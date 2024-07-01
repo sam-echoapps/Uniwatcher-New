@@ -14,7 +14,7 @@
   --oj-dialog-cancel-icon-margin-top: .1rem;
 
   --oj-dialog-title-line-height : var(--oj-typography-subheading-lg-line-height);
-  --oj-dialog-title-text-color :#012552;
+  --oj-dialog-title-text-color :#6a73fa;
 }
 
 .sendOffScreen {
@@ -63,7 +63,8 @@ html[dir="rtl"] .demo-oracle-icon {
 }
 
 oj-button{
-  background-color: #06668a;
+/*   background-color: #06668a;*/  
+  background-color: #6a73fa;
   border-radius: 10px;
   border: none !important;
 }
@@ -82,11 +83,11 @@ oj-button{
 
 .oj-drawer-reflow-wrapper{
   height: 100vh;
-  background-color: #093748;
+  background-color: #6a73fa;
 }
 
 oj-drawer-layout {
-  background-color: #093748;
+  background-color: #6a73fa;
 }
 
 .oj-drawer-layout-main-content{
@@ -106,7 +107,7 @@ oj-drawer-layout {
 }
 
 .oj-drawer-overlay{
-  background-color: #093748 !important;
+  background-color: #6a73fa !important;
 }
 
 #nav-close{
@@ -186,5 +187,5 @@ td{
 }
 
 .oj-tabbar .oj-tabbar-item.oj-selected {
-  background-color: #06668a;
+  background-color: #6a73fa;
 }

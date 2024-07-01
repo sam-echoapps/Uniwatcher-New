@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../../css/dashboard.css">
 
 <div class="oj-panel oj-flex  oj-sm-align-items-center" style="margin: 10px;">
-    <h6 style="font-weight: 500;font-size: 22px;color: #06668a;">
+    <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa;">
         Add and Manage Offices
     </h6>
 </div>
@@ -78,21 +78,21 @@
                         <td>
                             <oj-button :id="[[row.data.id]]" display="icons" style="background-color: transparent;" 
                                 on-oj-action="[[editOffice]]">
-                                <i class="fa-solid fa-pen-to-square" style="color: #06668a; font-size: 20px; margin-top: 15px;"></i>
-                                <p style="color: #06668a;">Edit</p>
+                                <i class="fa-solid fa-pen-to-square" style="color: #6a73fa; font-size: 20px; margin-top: 15px;"></i>
+                                <p style="color: #6a73fa;">Edit</p>
                             </oj-button>
                             <oj-bind-if test="[[row.data.status === 0 ]]">
                                 <oj-button :id="[[row.data.id]]" display="icons" style="background-color: transparent" 
                                     on-oj-action="[[deleteOffice]]">
                                     <i class="fa-solid fa-ban" style="color: red; font-size: 20px; margin-top: 15px;"></i>
-                                    <p style="color: #06668a;">Deactivate</p>
+                                    <p style="color: #6a73fa;">Deactivate</p>
                                 </oj-button>
                             </oj-bind-if>
                             <oj-bind-if test="[[row.data.status === 1 ]]">
                                 <oj-button :id="[[row.data.id]]" display="icons" style="background-color: transparent" 
                                     on-oj-action="[[activateOffice]]">
                                     <i class="fa-solid fa-circle-check" style="color: green; font-size: 20px; margin-top: 15px;"></i>
-                                    <p style="color: #06668a;">Activate</p>
+                                    <p style="color: #6a73fa;">Activate</p>
                                 </oj-button>
                             </oj-bind-if>
                         </td>
