@@ -21,7 +21,7 @@
         </div>
 
         <div id="personalInfo" style="display: block;">
-            <h6 style="font-weight: 500;font-size: 22px;color: #06668a;">Personal Details</h6>
+            <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa;">Personal Details</h6>
             <div class="oj-panel">
                 <oj-form-layout id="personal-information" direction="row" max-columns="3" style="padding: 20px;">
                     <oj-input-text id="firstname" label-hint="First Name" required="true"  value="{{firstName}}"></oj-input-text>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             
-                <h6 style="font-weight: 500;font-size: 22px;color: #06668a;">Current Status</h6>
+                <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa;">Current Status</h6>
                 <div class="oj-panel">
                     <oj-form-layout id="personal-information" direction="row" max-columns="3" style="padding: 20px;">
                         <oj-select-single id="select" label-hint="Select Status" label-edge="inside" class="oj-form-control-max-width-md"
@@ -73,7 +73,7 @@
             
 
             <div class="oj-flex oj-sm-justify-content-space-between oj-sm-align-items-center" style="width: 100%;">
-                <h6 style="font-weight: 500;font-size: 22px;color: #06668a;">Student Log</h6>
+                <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa;">Student Log</h6>
                 <div class="oj-flex oj-sm-flex-direction-column" style="margin-right: 20px;">
                     <oj-button on-oj-action="[[addLog]]">Add Log</oj-button>
                 </div>
@@ -117,7 +117,7 @@
                                         <oj-bind-if test="[[row.data.complete24 === true ]]">
                                             <oj-button title="Edit"  on-oj-action="[[editLog]]"
                                                 :id="[[row.data.noteId]]" style="background-color: transparent;">
-                                                <i class="fa-solid fa-pen-to-square" style="color: #06668a;font-size: 20px;"></i>
+                                                <i class="fa-solid fa-pen-to-square" style="color: #6a73fa;font-size: 20px;"></i>
                                             </oj-button>
                                         </oj-bind-if>
                                         <oj-bind-if test="[[row.data.reminderDate !== null ]]">
@@ -144,7 +144,7 @@
         </div>
 
         <div id="application" style="display: none;">
-            <h6 style="font-weight: 500;font-size: 22px;color: #06668a;margin-left: 20px;">Add New Applications</h6>
+            <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa;margin-left: 20px;">Add New Applications</h6>
             
             <div class="oj-panel">
                 <oj-validation-group id="applicationValidation" class="form-container" role="group">
@@ -180,7 +180,7 @@
             </div>
 
             <div class="oj-flex oj-sm-justify-content-space-between oj-sm-align-items-center" style="width: 100%;">
-                <h6 style="font-weight: 500;font-size: 22px;color: #06668a; margin-left: 20px;">
+                <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa; margin-left: 20px;">
                     Total number of Application : <oj-bind-text value="[[totalNumberOfApplication]]"></oj-bind-text>
                 </h6>
             </div>
@@ -220,7 +220,7 @@
                                     </td>
                                     <td>
                                         <oj-bind-if test="[[row.data.loginurl != '' ]]">
-                                            <a :id="[[row.data.loginurl]]"  on-click="[[goToPage]]" target="_blank">Click here</a>
+                                            <a :id="[[row.data.loginurl]]"  on-click="[[goToPage]]" target="_blank" style="color:#6a73fa">Click here</a>
                                         </oj-bind-if>
                                     </td>
                                     <td><oj-bind-text value="[[row.data.username]]"></oj-bind-text></td>
@@ -232,18 +232,18 @@
                                     <td>
                                         <oj-button :id="[[row.data.id]]" display="icons" style="background-color: transparent" 
                                             on-oj-action="[[editApplication]]">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #06668a; font-size: 20px;"></i>
+                                            <i class="fa-solid fa-pen-to-square" style="color: #6a73fa; font-size: 20px;"></i>
                                         </oj-button>
                                         <oj-bind-if test="[[userRole() === 'admin' ]]">
                                             <oj-button :id="[[row.data.id]]" display="icons" style="background-color: transparent"
                                                 on-oj-action="[[deleteApplication]]">
-                                                <i class="fa-solid fa-trash" style="color: #06668a; font-size: 20px;"></i>
+                                                <i class="fa-solid fa-trash" style="color: #6a73fa; font-size: 20px;"></i>
                                             </oj-button>
                                         </oj-bind-if>
                                         <oj-bind-if test="[[userRole() === 'director' ]]">
                                             <oj-button :id="[[row.data.id]]" display="icons" style="background-color: transparent"
                                                 on-oj-action="[[deleteApplication]]">
-                                                <i class="fa-solid fa-trash" style="color: #06668a; font-size: 20px;"></i>
+                                                <i class="fa-solid fa-trash" style="color: #6a73fa; font-size: 20px;"></i>
                                             </oj-button>
                                         </oj-bind-if>
                                     </td>
@@ -255,7 +255,7 @@
             </div>
 
             <div class="oj-flex oj-sm-justify-content-space-between oj-sm-align-items-center" style="width: 100%;">
-                <h6 style="font-weight: 500;font-size: 22px;color: #06668a; margin-left: 20px;">Add Final Choice </h6>
+                <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa; margin-left: 20px;">Add Final Choice </h6>
             </div>
             <div class="oj-panel">
                 <div class="oj-flex oj-sm-justify-content-center" style="margin: 20px;">
@@ -458,10 +458,10 @@
                 <oj-file-picker primary-text="Offer file upload" on-oj-select="[[selectListener]]"></oj-file-picker>
                 <oj-bind-if test="[[offerFile() != '' ]]">
                     <div class="oj-flex  oj-sm-justify-content-space-around" style="margin-top: 10px;align-items: center;">
-                        <a id="offerFile" on-click= "[[previewClick]]" target="_blank">
+                        <a id="offerFile" on-click= "[[previewClick]]" target="_blank" style="color:#6a73fa">
                             <oj-bind-text value="[[offerFile]]"></oj-bind-text>
                         </a>
-                        <a id="offerFileButton" on-click= "[[removeFile]]" target="_blank" style="font-size: 15px;margin-top: 10px;">
+                        <a id="offerFileButton" on-click= "[[removeFile]]" target="_blank" style="font-size: 15px;margin-top: 10px; color:#6a73fa;">
                             <span slot="startIcon" class="oj-ux-ico-delete-circle" style="font-size: larger;"></span>
                         </a>
                     </div>

@@ -83,11 +83,11 @@ oj-button{
 
 .oj-drawer-reflow-wrapper{
   height: 100vh;
-  background-color: #6a73fa;
+  background-color: rgb(50, 49, 49);
 }
 
 oj-drawer-layout {
-  background-color: #6a73fa;
+  background-color: rgb(50, 49, 49);
 }
 
 .oj-drawer-layout-main-content{
@@ -107,7 +107,7 @@ oj-drawer-layout {
 }
 
 .oj-drawer-overlay{
-  background-color: #6a73fa !important;
+  background-color: rgb(50, 49, 49) !important;
 }
 
 #nav-close{

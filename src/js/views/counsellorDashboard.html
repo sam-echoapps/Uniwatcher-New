@@ -27,7 +27,7 @@
     <h6 style="text-align: center;">Assigned Leads Status</h6>
     <div class="oj-flex tbl-top-btn">
         <p class="oj-flex oj-sm-align-items-center" id="assignedLeadCount" 
-            style="padding: 4px 10px; border-radius: 10px;background-color: #06668a; color: #fff;margin-top: 15px;">
+            style="padding: 4px 10px; border-radius: 10px;background-color: #6a73fa; color: #fff;margin-top: 15px;">
             Total Assigned leads: <oj-bind-text value="[[assignedLeadsCount]]"></oj-bind-text>
         </p>
     </div>
@@ -50,7 +50,7 @@
                 <template slot="rowTemplate" data-oj-as="row">
                     <tr>
                         <td>
-                            <a :id="[[row.data.id]]" on-click= "[[viewProfile]]" target="_blank">
+                            <a :id="[[row.data.id]]" on-click= "[[viewProfile]]" target="_blank" style="color:#6a73fa">
                                 <oj-bind-text value="[[row.data.id]]"></oj-bind-text>
                             </a>
                         </td>

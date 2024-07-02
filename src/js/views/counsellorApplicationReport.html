@@ -1,5 +1,5 @@
 <div class="oj-panel oj-flex oj-sm-justify-content-space-between">
-    <h6 style="font-weight: 500;font-size: 22px;color: #06668a;">
+    <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa;">
         All Application Report
     </h6>
     <oj-select-single id="select" label-hint="Select Year" label-edge="inside" class="oj-form-control-max-width-md"
@@ -144,7 +144,7 @@
         <template slot="rowTemplate" data-oj-as="row">
             <tr>
                 <td>
-                    <a :id="[[row.data.studentId]]" on-click= "[[viewProfile]]" target="_blank"><oj-bind-text value="[[row.data.studentId]]"></oj-bind-text></a>
+                    <a :id="[[row.data.studentId]]" on-click= "[[viewProfile]]" target="_blank" style="color:#6a73fa"><oj-bind-text value="[[row.data.studentId]]"></oj-bind-text></a>
                 </td>
                 <td><oj-bind-text value="[[row.data.applicationId]]"></oj-bind-text></td>
                 <td><oj-bind-text value="[[row.data.university]]"></oj-bind-text></td>

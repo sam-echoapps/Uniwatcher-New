@@ -347,7 +347,7 @@
                                     </td>
                                     <td>
                                         <oj-bind-if test="[[row.data.loginurl != '' ]]">
-                                            <a :id="[[row.data.loginurl]]"  on-click="[[goToPage]]" target="_blank">Click here</a>
+                                            <a :id="[[row.data.loginurl]]"  on-click="[[goToPage]]" target="_blank" style="color:#6a73fa">Click here</a>
                                         </oj-bind-if>
                                     </td>
                                     <td><oj-bind-text value="[[row.data.username]]"></oj-bind-text></td>
@@ -606,7 +606,7 @@
                 <oj-file-picker primary-text="Offer file upload" on-oj-select="[[selectListener]]"></oj-file-picker>
                 <oj-bind-if test="[[offerFile() != '' ]]">
                     <div class="oj-flex  oj-sm-justify-content-space-around" style="margin-top: 10px;align-items: center;">
-                        <a id="offerFile" on-click= "[[previewClick]]" target="_blank">
+                        <a id="offerFile" on-click= "[[previewClick]]" target="_blank" style="color:#6a73fa">
                             <oj-bind-text value="[[offerFile]]"></oj-bind-text>
                         </a>
                         <a id="offerFileButton" on-click= "[[removeFile]]" target="_blank" style="font-size: 15px;margin-top: 10px;">

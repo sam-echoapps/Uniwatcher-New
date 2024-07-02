@@ -47,7 +47,7 @@ hr{
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    background-color: #06668a;
+    background-color: #6a73fa;
     color: #fff;
     transition: transform 0.5s ease-in-out;
 }
@@ -80,7 +80,7 @@ hr{
 
 
 .oj-selected{
-    background-color: #06668a !important;
+    background-color: #6a73fa !important;
 }
 
 .oj-selected .oj-button-label .oj-complete .oj-button-text{

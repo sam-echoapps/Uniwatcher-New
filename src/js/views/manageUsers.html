@@ -93,7 +93,7 @@
                             <oj-bind-text value="[[row.data.date]]"></oj-bind-text>
                         </td>
                         <td>
-                            <a :id="[[row.data.id]]" on-click= "[[viewStudents]]" target="_blank">
+                            <a :id="[[row.data.id]]" on-click= "[[viewStudents]]" target="_blank" style="color:#6a73fa">
                                 <oj-bind-text value="[[row.data.studentCount]]"></oj-bind-text>
                             </a>
                         </td>
@@ -278,7 +278,7 @@
                     <template slot="rowTemplate" data-oj-as="row">
                         <tr>
                             <td>
-                                <a :id="[[row.data.id]]" on-click= "[[viewProfile]]" target="_blank">
+                                <a :id="[[row.data.id]]" on-click= "[[viewProfile]]" target="_blank" style="color:#6a73fa">
                                     <oj-bind-text value="[[row.data.id]]"></oj-bind-text>
                                 </a>
                             </td>
