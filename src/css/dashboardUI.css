@@ -1,0 +1,118 @@
+.gallery *,
+.gallery *:before,
+.gallery *:after{
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+
+
+.gallery{
+  display:block;
+  width:100%;
+  margin:0 auto;
+  overflow:hidden;
+  /*max-width:960px */;
+  max-width:auto;
+}
+
+.gallery .tile{
+  display:block;
+  width:100%;
+  padding:0 0.5em 0.5em 0;
+}
+
+.gallery .tile .post{
+  /* this is the content box; what follows is purely cosmetic */
+  background-color:#ffffff;
+  color:#000000;
+  text-align:top;
+  padding:1em 2em;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 150px; 
+  position: relative; 
+
+}
+
+
+ .link-container {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+  }
+  
+.link-container a {
+    display: flex;
+    align-items: center;
+    color: #6a73fa; 
+    text-decoration: none; /* Remove underline */
+  }
+  
+ .link-container a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+
+
+  
+.indicator-container .indicator-window {
+    width: 100px;
+    height: 16px;
+    background-image: linear-gradient(0deg, #e0e0e0, #c8c8c8);
+    border-radius: 8px; /* Rounded corners */
+    margin-right: 1em;
+    margin-top: 2em;
+    padding: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  }
+  
+  .indicator-container .indicator-window > span {
+    display: block;
+    height: 100%;
+    background-color: #4CAF50; /* Default color */
+    border-radius: 8px; /* Match container's border radius */
+    transition: width 0.3s ease-in-out; /* Smooth width transition */
+  }
+  
+  .indicator-container.ok .indicator-window > span {
+    background-color: #4CAF50; /* Green for 'ok' state */
+  }
+  
+ 
+
+
+@media screen and (min-width:480px){
+  .gallery .tile{
+    width:50%;
+    float:left;
+  }
+  .gallery .tile.wide,
+  .gallery .tile.full{
+    width:100%;
+  }
+}
+
+@media screen and (min-width:720px){
+  .gallery .tile{
+    width:33.333%;
+    float:left;
+  }
+  .gallery .tile.wide{
+    width:66.667%;
+  }
+}
+
+@media screen and (min-width:960px){
+  .gallery .tile{
+    width:25%;
+    float:left;
+  }
+  .gallery .tile.wide{
+    width:50%;
+  }
+}

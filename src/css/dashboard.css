@@ -94,3 +94,25 @@ oj-button .oj-button-button .oj-button-label .oj-button-text{
 ul .oj-selected{
     color: #f0f0f0 !important;
 }
+
+/* Adjust the appearance of the oj-select-single */
+.yeardropdown {
+    display: inline-block;
+    padding: 0.375rem 0.75rem; 
+    font-size: 1rem; 
+    line-height: 1.5; 
+    border: 1px solid #ced4da; 
+    border-radius: 1.5rem; 
+    background-color: #ffffff; 
+    color: white; 
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Add transition effects */
+}
+  
+  /* Optional: Hover and focus styles */
+  .yeardropdown:hover,
+  .yeardropdown:focus {
+    border-color: #6c757d; 
+    outline: 0; 
+    background-color: #ffffff !important; 
+  }
+  

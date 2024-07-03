@@ -605,6 +605,16 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                     self.stIdRightClick(context.key);
                 };
 
+
+                self.progressLine = ()=>{
+                    var percentage,
+                    container = $(".indicator-container"),
+                    meter = container.find(".indicator-window > span");
+                    percentage = 90;
+                    container.addClass("ok");
+                    meter.css("width", percentage + "%");
+                }
+
                 self.router = args.parentRouter;
                 self.connected = function () {
                     if (sessionStorage.getItem("userName") == null) {
@@ -621,6 +631,7 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                             self.getOffices();
                             self.getunassignedAllStudents();
                             app.onAppSuccess();
+                            self.progressLine();
                         }
                     }
                 }
