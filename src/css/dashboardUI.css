@@ -79,10 +79,21 @@
     transition: width 0.3s ease-in-out; /* Smooth width transition */
   }
   
-  .indicator-container.ok .indicator-window > span {
-    background-color: #4CAF50; /* Green for 'ok' state */
+  .indicator-container.studentsProgress .indicator-window > span {
+    background-color: #6a73fa; 
+  }
+
+  .indicator-container.applicationProgress .indicator-window > span {
+    background-color: #ff1616; 
   }
   
+  .indicator-container.finalProgress .indicator-window > span {
+    background-color: #c62828; 
+  }
+
+  .indicator-container.unassignedProgress .indicator-window > span {
+    background-color: #7ed321; 
+  }
  
 
 
