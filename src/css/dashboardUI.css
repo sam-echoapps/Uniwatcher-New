@@ -20,7 +20,8 @@
 .gallery .tile{
   display:block;
   width:100%;
-  padding:0 0.5em 0.5em 0;
+/*   padding:0 0.5em 0.5em 0;
+ */  padding:0.5em 2em 2em 0.5em;
 }
 
 .gallery .tile .post{

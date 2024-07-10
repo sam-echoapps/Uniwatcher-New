@@ -214,6 +214,10 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "help", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
         { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
+        { path: "franchiseStudentLogReport", detail: { label: "Student Log Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseApplicationReport", detail: { label: "Application Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseFinalChoiceReport", detail: { label: "Final Choice Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseMissedReminder", detail: { label: "Missed Reminder Report", iconClass: "fa-solid fa-people-roof", }, },
       ];
     }  
     else if (sessionStorage.getItem("userRole") == "student") {
@@ -390,6 +394,14 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
             {"name": "Add Student","id": "addStudent","icons": "fa-solid fa-user-plus", "path":"addStudent"},
             {"name": "Search Student","id": "searchFranchiseStudent","icons": "fa-solid  fa-magnifying-glass", "path":"searchFranchiseStudent"},
             {"name": "Student Manager Report","id": "franchiseStudentManagerReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentManagerReport"},
+            {"name": "Student Log Report","id": "franchiseStudentLogReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentLogReport"},
+          ]
+        },
+        {"name": "Reports", "id": "application", "icons": "oj-ux-ico-bar-chart", 
+          "children": [
+            {"name": "Application Report","id": "franchiseApplicationReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseApplicationReport"},
+            {"name": "Final Choice Report","id": "franchiseFinalChoiceReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseFinalChoiceReport"},
+            {"name": "Missed Reminder Report","id": "franchiseMissedReminders","icons": "oj-ux-ico-bar-chart", "path":"franchiseMissedReminder"},
           ]
         },
         {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
@@ -487,7 +499,8 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
     self.reminderData = ko.observableArray(new Array());
     self.reminderCount = ko.observable();
     $.ajax({
-      url: "http://169.197.183.168:8040/getUserReminderNotes",
+      //url: "http://169.197.183.168:8040/getUserReminderNotes",
+      url: "http://65.0.111.226:8040/getUserReminderNotes",
       //url: "/getUserReminderNotes",
       type: "POST",
       data: JSON.stringify({
@@ -578,7 +591,8 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         document.querySelector("#RemoteDeploymentDialog").open();
         self.onepDeployList([]);
         $.ajax({
-          url: "http://169.197.183.168:8040/onepdep",
+          //url: "http://169.197.183.168:8040/onepdep",
+          url: "http://65.0.111.226:8040/onepdep",
           //url: "/onepdep",
           type: "GET",
           dataType: "json",

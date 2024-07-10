@@ -116,6 +116,7 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                 self.yearChanged = ()=>{
                     sessionStorage.setItem("selectYear", self.selectYear());
                     self.getDashboardCount();
+                    self.progressLine();
                 }
                 //-----------------Completed card functionalities----------------------//
 
@@ -607,12 +608,49 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
 
 
                 self.progressLine = ()=>{
-                    var percentage,
-                    container = $(".indicator-container"),
-                    meter = container.find(".indicator-window > span");
-                    percentage = 90;
-                    container.addClass("ok");
-                    meter.css("width", percentage + "%");
+                    var studentPercentage,applicationPercentage,finalchoicePercentage,unassignedPercentage;
+                    $.ajax({
+                        url: BaseURL+"/getDashboardCount",
+                        type: 'GET',
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        },
+                        success: function (data) {
+                            data = JSON.parse(data);
+                            console.log(data);
+
+                            let studentTotalCount = data['student_count'];
+                            let applicationTotalCount = data['application_count'];
+                            let finalchoiceCount = data['finalchoice_count'];
+                            let unassignedCount = data['unassigned_count'];
+
+                            studentPercentage = (self.studentsCount() / studentTotalCount) * 100;
+                            applicationPercentage = (self.applicationCount() / applicationTotalCount) * 100;
+                            finalchoicePercentage = (self.finalchoicedCount() / finalchoiceCount) * 100;
+                            unassignedPercentage = (self.unassignedLeadsCount() / unassignedCount) * 100;
+
+                            // Students progress
+                            var studentContainer = $(".indicator-container.studentsProgress");
+                            let studentMeter = studentContainer.find(".indicator-window > span");
+                            studentMeter.css("width", studentPercentage + "%");
+
+                            // Application progress
+                            var applicationContainer = $(".indicator-container.applicationProgress");
+                            let applicationMeter = applicationContainer.find(".indicator-window > span");
+                            applicationMeter.css("width", applicationPercentage + "%");
+
+                            // Final choice progress
+                            var finalchoiceContainer = $(".indicator-container.finalProgress");
+                            let finalchoiceMeter = finalchoiceContainer.find(".indicator-window > span");
+                            finalchoiceMeter.css("width", finalchoicePercentage + "%");
+
+                            // Unassigned leads progress
+                            var unassignedContainer = $(".indicator-container.unassignedProgress");
+                            let unassignedMeter = unassignedContainer.find(".indicator-window > span");
+                            unassignedMeter.css("width", unassignedPercentage + "%");
+
+                        }
+                    })
                 }
 
                 self.router = args.parentRouter;
