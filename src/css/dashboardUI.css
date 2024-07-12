@@ -95,6 +95,41 @@
   .indicator-container.unassignedProgress .indicator-window > span {
     background-color: #7ed321; 
   }
+
+  .gallery-pie .tile-pie{
+    display:block;
+    width:100%;
+  /*   padding:0 0.5em 0.5em 0;
+   */  padding:0.5em 2em 2em 0.5em !important;
+  }
+
+ .gallery-pie {
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: nowrap; /* Prevent wrapping to keep elements in one row */
+  justify-content: space-between; /* Adjust spacing between elements */
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 100%; /* Adjust as needed */
+}
+
+.gallery-pie .tile-pie {
+  width: 48%; /* Adjust width as needed */
+  padding: 0.5em; /* Adjust padding as needed */
+}
+
+.gallery-pie .tile-pie .post-pie {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: top;
+  padding: 1em;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  position: relative;
+}
+
  
 
 

@@ -1,6 +1,6 @@
 define(["knockout","jquery","appController", "ojs/ojarraydataprovider", 
         "ojs/ojinputtext", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojselectsingle", 
-        "ojs/ojactioncard", "ojs/ojtable", "ojs/ojselectcombobox", "ojs/ojpopup", "ojs/ojprogress-circle", "ojs/ojmenu"], 
+        "ojs/ojactioncard", "ojs/ojtable", "ojs/ojselectcombobox", "ojs/ojpopup", "ojs/ojprogress-circle", "ojs/ojmenu", "ojs/ojchart"], 
     function (ko,$, app, ArrayDataProvider) {
 
         class Dashboard {
@@ -66,7 +66,13 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                 self.finalchoicedCount = ko.observable();
                 self.unassignedLeadsCount = ko.observable();
                 self.assignedLeadsCount = ko.observable();
+                self.orientationValue = ko.observable("vertical");
+                self.stackValue = ko.observable("off");
+                self.invoicePieSeriesValue = ko.observableArray();
+                var invoicePieSeries;
                 
+                
+
                 self.getDashboardCount = ()=>{
                     $.ajax({
                         url: BaseURL+"/getCountOfDashboard",
@@ -608,7 +614,7 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
 
 
                 self.progressLine = ()=>{
-                    var studentPercentage,applicationPercentage,finalchoicePercentage,unassignedPercentage;
+                    let studentPercentage,applicationPercentage,finalchoicePercentage,unassignedPercentage;
                     $.ajax({
                         url: BaseURL+"/getDashboardCount",
                         type: 'GET',
@@ -648,6 +654,15 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                             var unassignedContainer = $(".indicator-container.unassignedProgress");
                             let unassignedMeter = unassignedContainer.find(".indicator-window > span");
                             unassignedMeter.css("width", unassignedPercentage + "%");
+
+                            let monthTotal = data['StudentMonthCounts'][0].student_count + data['StudentMonthCounts'][1].student_count + data['StudentMonthCounts'][2].student_count; 
+                            invoicePieSeries = [
+                                {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, monthTotal], color: "#ffcc00"},
+                                {name : data['StudentMonthCounts'][1].month_name, items : [data['StudentMonthCounts'][1].student_count, monthTotal], color: "#3366cc"},
+                                {name : data['StudentMonthCounts'][2].month_name, items : [data['StudentMonthCounts'][2].student_count, monthTotal], color: "#33cc33"} 
+                            ];
+                            self.invoicePieSeriesValue(invoicePieSeries);
+            
 
                         }
                     })
