@@ -70,7 +70,10 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                 self.stackValue = ko.observable("off");
                 self.invoicePieSeriesValue = ko.observableArray();
                 var invoicePieSeries;
-                
+                self.applicationPieSeriesValue = ko.observableArray();
+                var applicationPieSeries;
+                self.finalchoicePieSeriesValue = ko.observableArray();
+                var finalchoicePieSeries;
                 
 
                 self.getDashboardCount = ()=>{
@@ -655,13 +658,29 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                             let unassignedMeter = unassignedContainer.find(".indicator-window > span");
                             unassignedMeter.css("width", unassignedPercentage + "%");
 
-                            let monthTotal = data['StudentMonthCounts'][0].student_count + data['StudentMonthCounts'][1].student_count + data['StudentMonthCounts'][2].student_count; 
+                            let studentMonthTotal = data['StudentMonthCounts'][0].student_count + data['StudentMonthCounts'][1].student_count + data['StudentMonthCounts'][2].student_count; 
                             invoicePieSeries = [
-                                {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, monthTotal], color: "#ffcc00"},
-                                {name : data['StudentMonthCounts'][1].month_name, items : [data['StudentMonthCounts'][1].student_count, monthTotal], color: "#3366cc"},
-                                {name : data['StudentMonthCounts'][2].month_name, items : [data['StudentMonthCounts'][2].student_count, monthTotal], color: "#33cc33"} 
+                                {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, studentMonthTotal], color: "#ffcc00"},
+                                {name : data['StudentMonthCounts'][1].month_name, items : [data['StudentMonthCounts'][1].student_count, studentMonthTotal], color: "#3366cc"},
+                                {name : data['StudentMonthCounts'][2].month_name, items : [data['StudentMonthCounts'][2].student_count, studentMonthTotal], color: "#33cc33"} 
                             ];
                             self.invoicePieSeriesValue(invoicePieSeries);
+
+                            let applicationMonthTotal = data['ApplicationMonthCounts'][0].application_count + data['ApplicationMonthCounts'][1].application_count + data['ApplicationMonthCounts'][2].application_count; 
+                            applicationPieSeries = [
+                                {name : data['ApplicationMonthCounts'][0].month_name, items : [data['ApplicationMonthCounts'][0].application_count, applicationMonthTotal], color: "#ffcc00"},
+                                {name : data['ApplicationMonthCounts'][1].month_name, items : [data['ApplicationMonthCounts'][1].application_count, applicationMonthTotal], color: "#3366cc"},
+                                {name : data['ApplicationMonthCounts'][2].month_name, items : [data['ApplicationMonthCounts'][2].application_count, applicationMonthTotal], color: "#33cc33"} 
+                            ];
+                            self.applicationPieSeriesValue(applicationPieSeries);
+            
+                            let finalchoiceMonthTotal = data['FinalChoiceMonthCounts'][0].final_choice_count + data['FinalChoiceMonthCounts'][1].final_choice_count + data['FinalChoiceMonthCounts'][2].final_choice_count; 
+                            finalchoicePieSeries = [
+                                {name : data['FinalChoiceMonthCounts'][0].month_name, items : [data['FinalChoiceMonthCounts'][0].final_choice_count, finalchoiceMonthTotal], color: "#ffcc00"},
+                                {name : data['FinalChoiceMonthCounts'][1].month_name, items : [data['FinalChoiceMonthCounts'][1].final_choice_count, finalchoiceMonthTotal], color: "#3366cc"},
+                                {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count, finalchoiceMonthTotal], color: "#33cc33"} 
+                            ];
+                            self.finalchoicePieSeriesValue(finalchoicePieSeries);
             
 
                         }
