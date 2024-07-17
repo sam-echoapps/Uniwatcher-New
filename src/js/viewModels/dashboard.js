@@ -68,8 +68,8 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                 self.assignedLeadsCount = ko.observable();
                 self.orientationValue = ko.observable("vertical");
                 self.stackValue = ko.observable("off");
-                self.invoicePieSeriesValue = ko.observableArray();
-                var invoicePieSeries;
+                self.studentPieSeriesValue = ko.observableArray();
+                var studentPieSeries;
                 self.applicationPieSeriesValue = ko.observableArray();
                 var applicationPieSeries;
                 self.finalchoicePieSeriesValue = ko.observableArray();
@@ -659,26 +659,50 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                             unassignedMeter.css("width", unassignedPercentage + "%");
 
                             let studentMonthTotal = data['StudentMonthCounts'][0].student_count + data['StudentMonthCounts'][1].student_count + data['StudentMonthCounts'][2].student_count; 
-                            invoicePieSeries = [
+                            studentPieSeries = [
                                 {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, studentMonthTotal], color: "#ffcc00"},
                                 {name : data['StudentMonthCounts'][1].month_name, items : [data['StudentMonthCounts'][1].student_count, studentMonthTotal], color: "#3366cc"},
                                 {name : data['StudentMonthCounts'][2].month_name, items : [data['StudentMonthCounts'][2].student_count, studentMonthTotal], color: "#33cc33"} 
                             ];
-                            self.invoicePieSeriesValue(invoicePieSeries);
+                            self.studentPieSeriesValue(studentPieSeries);
 
                             let applicationMonthTotal = data['ApplicationMonthCounts'][0].application_count + data['ApplicationMonthCounts'][1].application_count + data['ApplicationMonthCounts'][2].application_count; 
-                            applicationPieSeries = [
+                            /* applicationPieSeries = [
                                 {name : data['ApplicationMonthCounts'][0].month_name, items : [data['ApplicationMonthCounts'][0].application_count, applicationMonthTotal], color: "#ffcc00"},
                                 {name : data['ApplicationMonthCounts'][1].month_name, items : [data['ApplicationMonthCounts'][1].application_count, applicationMonthTotal], color: "#3366cc"},
                                 {name : data['ApplicationMonthCounts'][2].month_name, items : [data['ApplicationMonthCounts'][2].application_count, applicationMonthTotal], color: "#33cc33"} 
-                            ];
+                            ];       */
+       
+
+                            let applicationPieSeries = [
+                                {
+                                  name: data['ApplicationMonthCounts'][0].month_name,
+                                  items: [data['ApplicationMonthCounts'][0].application_count],
+                                  color: "#ffcc00"
+                                },
+                                {
+                                  name: data['ApplicationMonthCounts'][1].month_name,
+                                  items: [data['ApplicationMonthCounts'][1].application_count],
+                                  color: "#3366cc"
+                                },
+                                {
+                                  name: data['ApplicationMonthCounts'][2].month_name,
+                                  items: [data['ApplicationMonthCounts'][2].application_count],
+                                  color: "#33cc33"
+                                }
+                              ];
+                              
                             self.applicationPieSeriesValue(applicationPieSeries);
-            
                             let finalchoiceMonthTotal = data['FinalChoiceMonthCounts'][0].final_choice_count + data['FinalChoiceMonthCounts'][1].final_choice_count + data['FinalChoiceMonthCounts'][2].final_choice_count; 
-                            finalchoicePieSeries = [
+                            /* finalchoicePieSeries = [
                                 {name : data['FinalChoiceMonthCounts'][0].month_name, items : [data['FinalChoiceMonthCounts'][0].final_choice_count, finalchoiceMonthTotal], color: "#ffcc00"},
                                 {name : data['FinalChoiceMonthCounts'][1].month_name, items : [data['FinalChoiceMonthCounts'][1].final_choice_count, finalchoiceMonthTotal], color: "#3366cc"},
                                 {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count, finalchoiceMonthTotal], color: "#33cc33"} 
+                            ]; */
+                            finalchoicePieSeries = [
+                                {name : data['FinalChoiceMonthCounts'][0].month_name, items : [data['FinalChoiceMonthCounts'][0].final_choice_count], color: "#ffcc00"},
+                                {name : data['FinalChoiceMonthCounts'][1].month_name, items : [data['FinalChoiceMonthCounts'][1].final_choice_count], color: "#3366cc"},
+                                {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count], color: "#33cc33"} 
                             ];
                             self.finalchoicePieSeriesValue(finalchoicePieSeries);
             

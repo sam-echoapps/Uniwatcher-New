@@ -107,13 +107,14 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
+                <b>Students</b><br>
                 <oj-chart
                     class="chart"
                     id="studentChart"
                     type="pie"
                     orientation="[[orientationValue]]"
                     stack="[[stackValue]]"
-                    series="[[invoicePieSeriesValue]]"
+                    series="[[studentPieSeriesValue]]"
                     animation-on-display="auto"
                     animation-on-data-change="auto"
                     style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
@@ -126,10 +127,11 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
+                <b>Applications</b><br>
                 <oj-chart
                     class="chart"
                     id="applicationChart"
-                    type="pie"
+                    type="bar"
                     orientation="[[orientationValue]]"
                     stack="[[stackValue]]"
                     series="[[applicationPieSeriesValue]]"
@@ -145,10 +147,11 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
+                <b>Final Choice</b><br>
                 <oj-chart
                     class="chart"
                     id="finalchoiceChart"
-                    type="pie"
+                    type="pyramid"
                     orientation="[[orientationValue]]"
                     stack="[[stackValue]]"
                     series="[[finalchoicePieSeriesValue]]"
@@ -156,6 +159,7 @@
                     animation-on-data-change="auto"
                     style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
                     hover-behavior="dim"
+                    style="height: 400px;"
                     >
                     </oj-chart>
             </div>
