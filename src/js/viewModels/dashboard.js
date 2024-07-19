@@ -617,7 +617,8 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
 
 
                 self.progressLine = ()=>{
-                    let studentPercentage,applicationPercentage,finalchoicePercentage,unassignedPercentage;
+                    let studentPercentage,applicationPercentage,finalchoicePercentage,unassignedPercentage =0;
+                    let studentTotalCount,applicationTotalCount,finalchoiceCount,unassignedCount = 0;
                     $.ajax({
                         url: BaseURL+"/getDashboardCount",
                         type: 'GET',
@@ -628,15 +629,15 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                             data = JSON.parse(data);
                             console.log(data);
 
-                            let studentTotalCount = data['student_count'];
-                            let applicationTotalCount = data['application_count'];
-                            let finalchoiceCount = data['finalchoice_count'];
-                            let unassignedCount = data['unassigned_count'];
+                            studentTotalCount = data['student_count'];
+                            applicationTotalCount = data['application_count'];
+                            finalchoiceCount = data['finalchoice_count'];
+                            unassignedCount = data['unassigned_count'];
 
-                            studentPercentage = (self.studentsCount() / studentTotalCount) * 100;
-                            applicationPercentage = (self.applicationCount() / applicationTotalCount) * 100;
-                            finalchoicePercentage = (self.finalchoicedCount() / finalchoiceCount) * 100;
-                            unassignedPercentage = (self.unassignedLeadsCount() / unassignedCount) * 100;
+                            studentPercentage =  studentTotalCount ? (self.studentsCount() / studentTotalCount) * 100 : 0;
+                            applicationPercentage = applicationTotalCount ? (self.applicationCount() / applicationTotalCount) * 100 : 0;
+                            finalchoicePercentage = finalchoiceCount ? (self.finalchoicedCount() / finalchoiceCount) * 100 : 0;
+                            unassignedPercentage = unassignedCount ? (self.unassignedLeadsCount() / unassignedCount) * 100 : 0;
 
                             // Students progress
                             var studentContainer = $(".indicator-container.studentsProgress");

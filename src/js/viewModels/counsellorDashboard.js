@@ -1,5 +1,5 @@
 define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovider",
-    "ojs/ojinputtext", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojselectsingle", "ojs/ojactioncard", "ojs/ojtable", "ojs/ojmenu"], 
+    "ojs/ojinputtext", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojselectsingle", "ojs/ojactioncard", "ojs/ojtable", "ojs/ojmenu", "ojs/ojchart"], 
     function (oj,ko,$, app, ArrayDataProvider) {
 
         class CounsellorDashboard {
@@ -62,7 +62,15 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 self.finalchoicedCount = ko.observable();
                 self.unassignedLeadsCount = ko.observable();
                 self.assignedLeadsCount = ko.observable();
-                
+                self.orientationValue = ko.observable("vertical");
+                self.stackValue = ko.observable("off");
+                self.studentPieSeriesValue = ko.observableArray();
+                var studentPieSeries;
+                self.applicationPieSeriesValue = ko.observableArray();
+                var applicationPieSeries;
+                self.finalchoicePieSeriesValue = ko.observableArray();
+                var finalchoicePieSeries;
+
                 self.getDashboardCount = ()=>{
                     $.ajax({
                         url: BaseURL+"/getCountOfDashboard",
@@ -112,6 +120,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 self.yearChanged = (e)=>{
                     sessionStorage.setItem("selectYear", self.selectYear());
                     self.getDashboardCount();
+                    self.progressLine();
                 }
 
                 self.studentData = ko.observableArray([]);
@@ -180,6 +189,97 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     self.stIdRightClick(context.key);
                 };
 
+                self.progressLine = ()=>{
+                    let studentPercentage,applicationPercentage,finalchoicePercentage,unassignedPercentage = 0;
+                    let studentTotalCount,applicationTotalCount,finalchoiceCount,unassignedCount = 0;
+                    $.ajax({
+                        url: BaseURL+"/getManagerDashboardCount",
+                        type: 'POST',
+                        data: JSON.stringify({
+                            officeId: self.userOfficeId(),
+                            userId: self.userId()
+                        }),
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        },
+                        success: function (data) {
+                            data = JSON.parse(data);
+                            console.log(data);
+
+                            studentTotalCount = data['student_count'];
+                            applicationTotalCount = data['application_count'];
+                            finalchoiceCount = data['finalchoice_count'];
+                            unassignedCount = data['unassigned_count'];
+
+                            studentPercentage =  studentTotalCount ? (self.studentsCount() / studentTotalCount) * 100 : 0;
+                            applicationPercentage = applicationTotalCount ? (self.applicationCount() / applicationTotalCount) * 100 : 0;
+                            finalchoicePercentage = finalchoiceCount ? (self.finalchoicedCount() / finalchoiceCount) * 100 : 0;
+                            unassignedPercentage = unassignedCount ? (self.unassignedLeadsCount() / unassignedCount) * 100 : 0;
+
+
+                            // Students progress
+                            var studentContainer = $(".indicator-container.studentsProgress");
+                            let studentMeter = studentContainer.find(".indicator-window > span");
+                            studentMeter.css("width", studentPercentage + "%");
+
+                            // Application progress
+                            var applicationContainer = $(".indicator-container.applicationProgress");
+                            let applicationMeter = applicationContainer.find(".indicator-window > span");
+                            applicationMeter.css("width", applicationPercentage + "%");
+
+                            // Final choice progress
+                            var finalchoiceContainer = $(".indicator-container.finalProgress");
+                            let finalchoiceMeter = finalchoiceContainer.find(".indicator-window > span");
+                            finalchoiceMeter.css("width", finalchoicePercentage + "%");
+
+                            // Unassigned leads progress
+                            var unassignedContainer = $(".indicator-container.unassignedProgress");
+                            let unassignedMeter = unassignedContainer.find(".indicator-window > span");
+                            unassignedMeter.css("width", unassignedPercentage + "%");
+
+                            let studentMonthTotal = data['StudentMonthCounts'][0].student_count + data['StudentMonthCounts'][1].student_count + data['StudentMonthCounts'][2].student_count; 
+                            studentPieSeries = [
+                                {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, studentMonthTotal], color: "#ffcc00"},
+                                {name : data['StudentMonthCounts'][1].month_name, items : [data['StudentMonthCounts'][1].student_count, studentMonthTotal], color: "#3366cc"},
+                                {name : data['StudentMonthCounts'][2].month_name, items : [data['StudentMonthCounts'][2].student_count, studentMonthTotal], color: "#33cc33"} 
+                            ];
+                            self.studentPieSeriesValue(studentPieSeries);
+
+                            let applicationMonthTotal = data['ApplicationMonthCounts'][0].application_count + data['ApplicationMonthCounts'][1].application_count + data['ApplicationMonthCounts'][2].application_count; 
+
+                            let applicationPieSeries = [
+                                {
+                                  name: data['ApplicationMonthCounts'][0].month_name,
+                                  items: [data['ApplicationMonthCounts'][0].application_count],
+                                  color: "#ffcc00"
+                                },
+                                {
+                                  name: data['ApplicationMonthCounts'][1].month_name,
+                                  items: [data['ApplicationMonthCounts'][1].application_count],
+                                  color: "#3366cc"
+                                },
+                                {
+                                  name: data['ApplicationMonthCounts'][2].month_name,
+                                  items: [data['ApplicationMonthCounts'][2].application_count],
+                                  color: "#33cc33"
+                                }
+                              ];
+                              
+                            self.applicationPieSeriesValue(applicationPieSeries);
+                            let finalchoiceMonthTotal = data['FinalChoiceMonthCounts'][0].final_choice_count + data['FinalChoiceMonthCounts'][1].final_choice_count + data['FinalChoiceMonthCounts'][2].final_choice_count; 
+                            
+                            finalchoicePieSeries = [
+                                {name : data['FinalChoiceMonthCounts'][0].month_name, items : [data['FinalChoiceMonthCounts'][0].final_choice_count], color: "#ffcc00"},
+                                {name : data['FinalChoiceMonthCounts'][1].month_name, items : [data['FinalChoiceMonthCounts'][1].final_choice_count], color: "#3366cc"},
+                                {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count], color: "#33cc33"} 
+                            ];
+                            self.finalchoicePieSeriesValue(finalchoicePieSeries);
+            
+
+                        }
+                    })
+                }
+
                 self.connected = function () {
                     if (sessionStorage.getItem("userName") == null) {
                         self.router.go({path : 'signin'});
@@ -190,7 +290,8 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                         if(routes[11].path!="counsellorDashboard"){
                             location.reload();
                         }
-                        self.getDashboardCount()
+                        self.getDashboardCount();
+                        self.progressLine();
                     }
                 }
             }

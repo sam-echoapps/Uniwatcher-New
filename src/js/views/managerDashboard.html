@@ -3,9 +3,8 @@
 <div class="">
     <div class="oj-flex dashboard">
         <div class="year-data oj-flex">
-            Select the year to see the data &nbsp;
-            <oj-select-single id="select" label-hint="Select Year" label-edge="inside"
-                class="oj-form-control-max-width-md" data="[[yearsDp]]" value="{{selectYear}}" on-value-changed="[[yearChanged]]"></oj-select-single>
+            <oj-select-single id="select" label-hint="Select the year to see the data" label-edge="inside"
+                class="oj-form-control-max-width-md yeardropdown" data="[[yearsDp]]" value="{{selectYear}}" on-value-changed="[[yearChanged]]"></oj-select-single>
         </div>
 <!--         
         <div class="oj-flex" id="year-data-set">
@@ -27,6 +26,8 @@
             </oj-action-card>
         </div>
         <hr> -->
+    </div>
+
 
         <!-- Widget Style 1 Start -->
      <div class="gallery">
@@ -100,7 +101,74 @@
 
 
 <!-- Widget Style 1 End -->
+
+
+<!-- Widget Style 2 End -->
+<div class="gallery-pie">
+    <div class="tile-pie">
+        <div class="post-pie">
+            <div class="chart-container chart-size">
+                <b>Students</b><br>
+                <oj-chart
+                    class="chart"
+                    id="studentChart"
+                    type="pie"
+                    orientation="[[orientationValue]]"
+                    stack="[[stackValue]]"
+                    series="[[studentPieSeriesValue]]"
+                    animation-on-display="auto"
+                    animation-on-data-change="auto"
+                    style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
+                    hover-behavior="dim"
+                    >
+                    </oj-chart>
+            </div>
+        </div>
     </div>
+    <div class="tile-pie">
+        <div class="post-pie">
+            <div class="chart-container chart-size">
+                <b>Applications</b><br>
+                <oj-chart
+                    class="chart"
+                    id="applicationChart"
+                    type="bar"
+                    orientation="[[orientationValue]]"
+                    stack="[[stackValue]]"
+                    series="[[applicationPieSeriesValue]]"
+                    animation-on-display="auto"
+                    animation-on-data-change="auto"
+                    style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
+                    hover-behavior="dim"
+                    >
+                    </oj-chart>
+            </div>
+        </div>
+    </div>
+    <div class="tile-pie">
+        <div class="post-pie">
+            <div class="chart-container chart-size">
+                <b>Final Choice</b><br>
+                <oj-chart
+                    class="chart"
+                    id="finalchoiceChart"
+                    type="pyramid"
+                    orientation="[[orientationValue]]"
+                    stack="[[stackValue]]"
+                    series="[[finalchoicePieSeriesValue]]"
+                    animation-on-display="auto"
+                    animation-on-data-change="auto"
+                    style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
+                    hover-behavior="dim"
+                    style="height: 400px;"
+                    >
+                    </oj-chart>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Widget Style 2 End -->
+
 
     <div style="background-color: #fff; padding: 20px; border-radius: 10px;">
         <div id="tabbardemo" class="dashboard">
