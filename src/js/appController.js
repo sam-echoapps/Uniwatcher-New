@@ -218,6 +218,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "franchiseApplicationReport", detail: { label: "Application Report", iconClass: "fa-solid fa-people-roof", }, },
         { path: "franchiseFinalChoiceReport", detail: { label: "Final Choice Report", iconClass: "fa-solid fa-people-roof", }, },
         { path: "franchiseMissedReminder", detail: { label: "Missed Reminder Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseSubUsers", detail: { label: "Manage Staff", iconClass: "fa-solid fa-people-roof", }, },
       ];
     }  
     else if (sessionStorage.getItem("userRole") == "student") {
@@ -404,6 +405,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
             {"name": "Missed Reminder Report","id": "franchiseMissedReminders","icons": "oj-ux-ico-bar-chart", "path":"franchiseMissedReminder"},
           ]
         },
+        {"name": "Manage Staff","id": "franchiseSubUsers","icons": "fa-solid fa-people-roof", "path":"franchiseSubUsers"},
         {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
       ]
     }  

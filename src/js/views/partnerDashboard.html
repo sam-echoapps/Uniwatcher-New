@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="../../css/counsellorDashboard.css">
-<div class="oj-panel">
+<link rel="stylesheet" href="../../css/dashboardUI.css">
+
+<div class="">
     <div class="oj-flex dashboard">
         <div class="year-data oj-flex">
             Select the year to see the data &nbsp;
@@ -7,7 +9,7 @@
                 class="oj-form-control-max-width-md" data="[[yearsDp]]" value="{{selectYear}}" on-value-changed="[[yearChanged]]"></oj-select-single>
         </div>
         
-        <div class="oj-flex" id="year-data-set">
+        <!-- <div class="oj-flex" id="year-data-set">
             <oj-action-card id="1" on-oj-action="[[cardAction]]" class="year-data-set oj-sm-padding-2x demo-card-content">
                 <p class="num"><oj-bind-text value="[[studentsCount]]"></oj-bind-text></p>
                 <p>Students</p>
@@ -21,9 +23,148 @@
                 <p>Final choice</p>
             </oj-action-card>
         </div>
-        <hr>
+        <hr> -->
     </div>
     
+    <!-- Widget Style 1 Start -->
+    <div class="gallery">
+        <div class="tile">
+            <div class="post">
+                <b>Students</b><br><oj-bind-text value="[[studentsCount]]"></oj-bind-text>
+                <div class="link-container">
+                   <a class="link" id="1" on-click="[[cardAction]]">
+                       View All
+                     <i class="fas fa-arrow-right arrow-icon"></i>
+                   </a>
+               </div>
+               <div class="indicator-container studentsProgress">
+                   <div class="indicator-window">
+                     <span></span>
+                   </div>
+                 </div>
+             </div>
+        </div>
+        <div class="tile">
+            <div class="post">
+           <b>Applications</b><br><oj-bind-text value="[[applicationCount]]"></oj-bind-text>
+           <div class="link-container">
+               <a class="link" id="2" on-click="[[cardAction]]">
+                   View All
+                 <i class="fas fa-arrow-right arrow-icon"></i>
+               </a>
+           </div>
+           <div class="indicator-container applicationProgress">
+               <div class="indicator-window">
+                 <span></span>
+               </div>
+             </div>
+           </div>
+        </div>
+        <div class="last-four">
+            <div class="tile">
+                <div class="post">
+               <b>Final choice</b><br><oj-bind-text value="[[finalchoicedCount]]"></oj-bind-text>
+               <div class="link-container">
+                   <a class="link" id="3" on-click="[[cardAction]]">
+                       View All
+                     <i class="fas fa-arrow-right arrow-icon"></i>
+                   </a>
+               </div>
+               <div class="indicator-container finalProgress">
+                   <div class="indicator-window">
+                     <span></span>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <div class="tile">
+                <div class="post">
+               <b>Unassigned Leads</b><br><oj-bind-text value="[[unassignedLeadsCount]]"></oj-bind-text>
+               <div class="link-container">
+                   <a class="link" id="4" on-click="[[cardAction]]">
+                       View All
+                     <i class="fas fa-arrow-right arrow-icon"></i>
+                   </a>
+               </div>
+               <div class="indicator-container unassignedProgress">
+                   <div class="indicator-window">
+                     <span></span>
+                   </div>
+                 </div>
+               </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Widget Style 1 End -->
+
+<!-- Widget Style 2 End -->
+<div class="gallery-pie">
+    <div class="tile-pie">
+        <div class="post-pie">
+            <div class="chart-container chart-size">
+                <b>Students</b><br>
+                <oj-chart
+                    class="chart"
+                    id="studentChart"
+                    type="pie"
+                    orientation="[[orientationValue]]"
+                    stack="[[stackValue]]"
+                    series="[[studentPieSeriesValue]]"
+                    animation-on-display="auto"
+                    animation-on-data-change="auto"
+                    style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
+                    hover-behavior="dim"
+                    >
+                    </oj-chart>
+            </div>
+        </div>
+    </div>
+    <div class="tile-pie">
+        <div class="post-pie">
+            <div class="chart-container chart-size">
+                <b>Applications</b><br>
+                <oj-chart
+                    class="chart"
+                    id="applicationChart"
+                    type="bar"
+                    orientation="[[orientationValue]]"
+                    stack="[[stackValue]]"
+                    series="[[applicationPieSeriesValue]]"
+                    animation-on-display="auto"
+                    animation-on-data-change="auto"
+                    style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
+                    hover-behavior="dim"
+                    >
+                    </oj-chart>
+            </div>
+        </div>
+    </div>
+    <div class="tile-pie">
+        <div class="post-pie">
+            <div class="chart-container chart-size">
+                <b>Final Choice</b><br>
+                <oj-chart
+                    class="chart"
+                    id="finalchoiceChart"
+                    type="pyramid"
+                    orientation="[[orientationValue]]"
+                    stack="[[stackValue]]"
+                    series="[[finalchoicePieSeriesValue]]"
+                    animation-on-display="auto"
+                    animation-on-data-change="auto"
+                    style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
+                    hover-behavior="dim"
+                    style="height: 400px;"
+                    >
+                    </oj-chart>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Widget Style 2 End -->
+ 
     <h6 style="text-align: center;">Total Students</h6>
     <div class="oj-flex tbl-top-btn oj-sm-justify-content-space-between">
         <p class="oj-flex oj-sm-align-items-center" id="assignedLeadCount" 
