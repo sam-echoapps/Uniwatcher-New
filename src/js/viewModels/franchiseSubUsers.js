@@ -67,7 +67,10 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojpagingdataprovi
                     self.usersData([])
                     $.ajax({
                         url: BaseURL+"/getFranchiseSubUsers",
-                        type: 'GET',
+                        type: 'POST',
+                        data: JSON.stringify({
+                            franchiseId: self.franchiseId(),
+                        }),
                         error: function (xhr, textStatus, errorThrown) {
                             console.log(textStatus);
                         },
@@ -93,8 +96,19 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojpagingdataprovi
                                     var month = ('0' + (date.getMonth() + 1)).slice(-2);
                                     var day = ('0' + date.getDate()).slice(-2);
                                     date =  `${day}-${month}-${year}`
-                                    var role = data[i][3].charAt(0).toUpperCase() + data[i][3].slice(1);
-                                                
+                                    var role = data[i][3];
+
+                                    if (role.toLowerCase() === 'franchise') {
+                                        role = 'Franchise Admin';
+                                    } else {
+                                        role = role
+                                            .split(' ')  // Split the string into words
+                                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))  // Capitalize the first letter of each word
+                                            .join(' ');  // Join the words back together
+                                    }
+
+
+                                                                                
                                     self.usersData.push({
                                         slno: i+1,
                                         id: data[i][0],
@@ -153,20 +167,13 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojpagingdataprovi
                     keyAttributes: 'value'
                 }); 
 
-                if(self.userRole()=="manager"){
-                    self.role = [
-                        {value: 'manager', label: 'Manager'},
-                        {value: 'counselor', label: 'Counselor'},
-                    ]
-                }
-                else{
-                    self.role = [
-                        {value: 'manager', label: 'Manager'},
-                        {value: 'director', label: 'Director'},
-                        {value: 'counselor', label: 'Counselor'},
-                        {value: 'franchise', label: 'Franchise'},
-                    ]
-                }
+                self.role = [
+                    {value: 'franchise', label: 'Franchise Admin'},
+                    {value: 'franchise director', label: 'Franchise Director'},
+                    {value: 'franchise manager', label: 'Franchise Manager'},
+                    {value: 'franchise counsellor', label: 'Franchise Counsellor'}
+                ]
+            
                 self.roleDp = new ArrayDataProvider(self.role, {
                     keyAttributes: 'value'
                 }); 
@@ -252,7 +259,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojpagingdataprovi
                                         data: JSON.stringify({
                                             name : self.name(),
                                             office : self.selectOffice(),
-                                            role : self.userRole(),
+                                            role : self.selectRole(),
                                             email : self.email(),
                                             password : self.password(),
                                             partnerId: 0,
@@ -412,7 +419,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojpagingdataprovi
                 self.getCounsilors = (officeId)=>{
                     self.counsilors([]);
                     $.ajax({
-                        url: BaseURL+"/getCounselors",
+                        url: BaseURL+"/getFranchiseSubUsers",
                         type: 'POST',
                         data: JSON.stringify({
                             office: officeId,
@@ -766,7 +773,10 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojpagingdataprovi
                 self.getStaffCount = (office)=>{
                     $.ajax({
                         url: BaseURL+"/getFranchiseStaffCount",
-                        type: 'GET',
+                        type: 'POST',
+                        data: JSON.stringify({
+                            franchiseId: self.franchiseId(),
+                        }),
                         error: function (xhr, textStatus, errorThrown) {
                             console.log(textStatus);
                         },

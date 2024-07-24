@@ -144,7 +144,7 @@
                             options="[[officeDp]]" value="{{selectOffice}}" required="true" disabled></oj-combobox-one>
                     </oj-bind-if>
                     <oj-select-single id="select" label-hint="Select Role" label-edge="inside" class="oj-form-control-max-width-md"
-                        data="[[roleDp]]" value="{{userRole}}" required="true" disabled></oj-select-single>
+                        data="[[roleDp]]" value="{{selectRole}}" required="true"></oj-select-single>
                     <div class="oj-flex">
                         <oj-input-text id="email" label-hint="email" required="true" value="{{email}}" on-value-changed="[[emailPatternValidator]]"></oj-input-text>
                         <p class="oj-text-color-danger"><oj-bind-text value="[[emailError]]"></oj-bind-text></p>
@@ -186,7 +186,7 @@
                         <oj-select-single id="select" label-hint="Select Office" label-edge="inside" class="oj-form-control-max-width-md"
                             data="[[officeDp]]" value="{{editOffice}}" required="true" disabled></oj-select-single>    
                         <oj-select-single id="select" label-hint="Select Role" label-edge="inside" class="oj-form-control-max-width-md"
-                            data="[[roleDp]]" value="{{editRole}}" required="true" disabled></oj-select-single>
+                            data="[[roleDp]]" value="{{editRole}}" required="true"></oj-select-single>
                     <div class="oj-flex">
                         <oj-input-text id="email" label-hint="email" required="true" value="{{editEmail}}" on-value-changed="[[emailPatternValidator]]"></oj-input-text>
                         <p class="oj-text-color-danger"><oj-bind-text value="[[emailError]]"></oj-bind-text></p>

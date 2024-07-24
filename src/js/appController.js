@@ -186,7 +186,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "franchiseReport", detail: { label: "Franchise Report", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
       ];
-    }else if (sessionStorage.getItem("userRole") == "franchise") {
+    }else if (sessionStorage.getItem("userRole") == "franchise" || sessionStorage.getItem("userRole") == "franchise director" || sessionStorage.getItem("userRole") == "franchise manager" || sessionStorage.getItem("userRole") == "franchise counsellor") {
       var navData = [
         { path: "", redirect: "signin" },
         { path: "signin", detail: { label: "Signin", iconClass: "oj-ux-ico-bar-chart" }, },
@@ -194,7 +194,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "managerDashboard", detail: { label: "Manager Dashboard", iconClass: "fa-solid fa-gauge", }, },
         { path: "counsellorDashboard", detail: { label: "Counsellor Dashboard", iconClass: "fa-solid fa-gauge", }, },
         { path: "dashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
-        { path: "addStudent", detail: { label: "Add Student", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "addFranchiseStudent", detail: { label: "Add Student", iconClass: "fa-solid fa-people-roof", }, },
         { path: "searchFranchiseStudent", detail: { label: "Search Student", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "franchiseStudentProfile", detail: { label: "Student Profile", iconClass: "oj-ux-ico-bar-chart", }, },
         { path: "franchiseStudents", detail: { label: "Students", iconClass: "oj-ux-ico-bar-chart", }, },
@@ -387,12 +387,12 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
       ]
     }
-    else if (sessionStorage.getItem("userRole") == "franchise") {
+    else if (sessionStorage.getItem("userRole") == "franchise" || sessionStorage.getItem("userRole") == "franchise director") {
       self.navMenu = [
         {"name": "Dashboard","id": "home","icons": "fa-solid fa-gauge", "path":"franchiseDashboard"},
         {"name": "Student", "id": "student", "icons": "oj-ux-ico-education", 
           "children": [
-            {"name": "Add Student","id": "addStudent","icons": "fa-solid fa-user-plus", "path":"addStudent"},
+            {"name": "Add Student","id": "addFranchiseStudent","icons": "fa-solid fa-user-plus", "path":"addFranchiseStudent"},
             {"name": "Search Student","id": "searchFranchiseStudent","icons": "fa-solid  fa-magnifying-glass", "path":"searchFranchiseStudent"},
             {"name": "Student Manager Report","id": "franchiseStudentManagerReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentManagerReport"},
             {"name": "Student Log Report","id": "franchiseStudentLogReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentLogReport"},
@@ -406,6 +406,27 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
           ]
         },
         {"name": "Manage Staff","id": "franchiseSubUsers","icons": "fa-solid fa-people-roof", "path":"franchiseSubUsers"},
+        {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
+      ]
+    }  
+    else if (sessionStorage.getItem("userRole") == "franchise manager" || sessionStorage.getItem("userRole") == "franchise counsellor") {
+      self.navMenu = [
+        {"name": "Dashboard","id": "home","icons": "fa-solid fa-gauge", "path":"franchiseDashboard"},
+        {"name": "Student", "id": "student", "icons": "oj-ux-ico-education", 
+          "children": [
+            {"name": "Add Student","id": "addFranchiseStudent","icons": "fa-solid fa-user-plus", "path":"addFranchiseStudent"},
+            {"name": "Search Student","id": "searchFranchiseStudent","icons": "fa-solid  fa-magnifying-glass", "path":"searchFranchiseStudent"},
+            {"name": "Student Manager Report","id": "franchiseStudentManagerReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentManagerReport"},
+            {"name": "Student Log Report","id": "franchiseStudentLogReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentLogReport"},
+          ]
+        },
+        {"name": "Reports", "id": "application", "icons": "oj-ux-ico-bar-chart", 
+          "children": [
+            {"name": "Application Report","id": "franchiseApplicationReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseApplicationReport"},
+            {"name": "Final Choice Report","id": "franchiseFinalChoiceReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseFinalChoiceReport"},
+            {"name": "Missed Reminder Report","id": "franchiseMissedReminders","icons": "oj-ux-ico-bar-chart", "path":"franchiseMissedReminder"},
+          ]
+        },
         {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
       ]
     }  
@@ -633,7 +654,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         router.go({ path: "managerDashboard" });
       }else if (sessionStorage.getItem("userRole") == "partner") {
         router.go({ path: "partnerDashboard" });
-      }else if (sessionStorage.getItem("userRole") == "franchise") {
+      }else if (sessionStorage.getItem("userRole") == "franchise" || sessionStorage.getItem("userRole") == "franchise director" || sessionStorage.getItem("userRole") == "franchise manager" || sessionStorage.getItem("userRole") == "franchise counsellor") {
         router.go({ path: "franchiseDashboard" });
       }else if (sessionStorage.getItem("userRole") == "student") {
         router.go({ path: "myProfile" });

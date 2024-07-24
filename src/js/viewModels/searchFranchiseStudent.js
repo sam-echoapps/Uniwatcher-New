@@ -43,6 +43,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                             console.log(textStatus);
                         },
                         success: function (data) {
+                            console.log(data)
                             if(data[0] != "No data found"){
                                 data = JSON.parse(data);
                                 let len = data.length;
