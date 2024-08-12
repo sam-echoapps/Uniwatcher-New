@@ -579,12 +579,17 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 }
                 self.counselorList = new ArrayDataProvider(self.counselors, {
                     keyAttributes: 'value'
-                });
+                });                      
 
-                if(self.userRole()=="franchise" || self.userRole()=="franchise director"){
+
+                if(self.userRole()=="franchise" || self.userRole()=="franchise director" || self.userRole()=="franchise manager" || self.userRole()=="franchise counsellor"){
                     self.office(sessionStorage.getItem("userOfficeId"));
                     self.franchise(sessionStorage.getItem("userFranchiseId"));
                     self.getCounselors(self.office());
+                }
+
+                if(self.userRole()=="franchise counsellor"){
+                    self.counsilor(sessionStorage.getItem("userId"));
                 }
                 
                 self.phoneValidator = (event)=>{
@@ -725,7 +730,6 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 }
 
                 self.franchiseFormSubmit = ()=>{
-                    alert(self.userRole())
                     const formValid = self._checkValidationGroup("formValidation"); 
                     if (formValid) {
                         if(self.emailError()=='' && self.phoneError()==''){

@@ -108,7 +108,7 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
-                <b>Students</b><br>
+                <b>Students</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 Months data)</span><br>
                 <oj-chart
                     class="chart"
                     id="studentChart"
@@ -128,11 +128,11 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
-                <b>Applications</b><br>
+                <b>Applications</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 Months data)</span><br>
                 <oj-chart
                     class="chart"
                     id="applicationChart"
-                    type="bar"
+                    type="pie"
                     orientation="[[orientationValue]]"
                     stack="[[stackValue]]"
                     series="[[applicationPieSeriesValue]]"
@@ -145,10 +145,10 @@
             </div>
         </div>
     </div>
-    <div class="tile-pie">
+    <!-- <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
-                <b>Final Choice</b><br>
+                <b>Final Choice</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 Months data)</span><br>
                 <oj-chart
                     class="chart"
                     id="finalchoiceChart"
@@ -165,6 +165,29 @@
                     </oj-chart>
             </div>
         </div>
+    </div> -->
+
+    <div class="tile-pie">
+        <div class="post-pie">
+            <div class="chart-container chart-size">
+                <b>Missed Reminder</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 Months data)</span><br>
+                <oj-chart
+                    class="chart"
+                    id="missedReminderChart"
+                    type="pie"
+                    orientation="[[orientationValue]]"
+                    stack="[[stackValue]]"
+                    series="[[missedReminderPieSeriesValue]]"
+                    animation-on-display="auto"
+                    animation-on-data-change="auto"
+                    style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
+                    hover-behavior="dim"
+                    style="height: 400px;"
+                    >
+                    </oj-chart>
+            </div>
+        </div>
+    </div>
     </div>
 </div>
 <!-- Widget Style 2 End -->

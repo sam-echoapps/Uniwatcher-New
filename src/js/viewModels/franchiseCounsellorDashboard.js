@@ -2,7 +2,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
     "ojs/ojinputtext", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojselectsingle", "ojs/ojactioncard", "ojs/ojtable", "ojs/ojmenu", "ojs/ojchart"], 
     function (oj,ko,$, app, ArrayDataProvider) {
 
-        class franchiseDashboard {
+        class CounsellorDashboard {
             constructor(args) {
                 var self = this;
 
@@ -40,12 +40,22 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                         self.router.go({path : 'franchiseFinalchoiced'});
                     }
                 };
-
+                
                 self.userOfficeId = ko.observable();
                 self.userRole = ko.observable(sessionStorage.getItem("userRole"));
                 self.userId = ko.observable();
-                self.franchiseId = ko.observable();
-                self.franchiseId(sessionStorage.getItem("userFranchiseId"))
+                if(self.userRole()=="admin" || self.userRole()=="director"){
+                    self.userOfficeId("All")
+                    self.userId("All")
+                }
+                else if(self.userRole()=="manager"){
+                    self.userOfficeId(sessionStorage.getItem("userOfficeId"));
+                    self.userId("All")
+                }
+                else{
+                    self.userOfficeId(sessionStorage.getItem("userOfficeId"));
+                    self.userId(sessionStorage.getItem("userId"))
+                }
 
                 self.studentsCount = ko.observable();
                 self.applicationCount = ko.observable();
@@ -60,36 +70,15 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 var applicationPieSeries;
                 self.finalchoicePieSeriesValue = ko.observableArray();
                 var finalchoicePieSeries;
-                self.missedReminderPieSeriesValue = ko.observableArray();
-                var missedReminderPieSeries;
 
-                self.selectList = ko.observable("all");
-                self.list = [
-                    { value: 'all', label: 'All' },
-                    { value: 'unAssigned', label: 'Unassigned Leads' },
-                    { value: 'assigned', label: 'Assigned Leads' },
-                    { value: 'active', label: 'Active' },
-                    { value: 'inactive', label: 'Inactive' },
-                    { value: 'SPAM', label: 'SPAM' },
-                    { value: 'Offer Received', label: 'Offer Received' },
-                    { value: 'Deposit Paid', label: 'Deposit Paid' },
-                    { value: 'Visa Grant', label: 'Visa Grant' },
-                    { value: 'Not Interested', label: 'Not Interested' },
-                    { value: 'Rejected', label: 'Rejected' },
-                    { value: 'closed', label: 'Closed' }
-                ];
-
-                self.listDP = new ArrayDataProvider(self.list, {
-                    keyAttributes: 'value'
-                });
-                
                 self.getDashboardCount = ()=>{
                     $.ajax({
-                        url: BaseURL+"/getCountOfFranchiseDashboard",
+                        url: BaseURL+"/getCountOfDashboard",
                         type: 'POST',
                         data: JSON.stringify({
                             year: self.selectYear(),
-                            franchiseId: self.franchiseId(),
+                            officeId: self.userOfficeId(),
+                            userId: self.userId()
                         }),
                         dataType: 'json',
                         error: function (xhr, textStatus, errorThrown) {
@@ -135,26 +124,24 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 }
 
                 self.studentData = ko.observableArray([]);
-                self.getStudentsData = (status)=>{
+                self.getStudentsData = ()=>{
                     $.ajax({
-                        url: BaseURL+"/getAllFranchiseStudents",
+                        url: BaseURL+"/getCounsilorStudents",
                         type: 'POST',
                         data: JSON.stringify({
-                            franchiseId: self.franchiseId(),
-                            status: status
+                            counsilorId: self.userId(),
                         }),
                         dataType: 'json',
                         error: function (xhr, textStatus, errorThrown) {
                             console.log(textStatus);
                         },
                         success: function (data) {
-                            self.studentData([]);
                             if(data[0]!="No data found"){
                                 data = JSON.parse(data);
                                 let len = data.length;
                                 self.assignedLeadsCount(len);
                                 for(var i=0;i<len;i++){
-                                    var date = data[i][4];
+                                    var date = data[i][6];
                                     date = new Date(date);
                                     var year = date.getFullYear();
                                     var month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -162,10 +149,12 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                                     date =  `${day}-${month}-${year}`
                                     self.studentData.push({
                                         id: data[i][0],
-                                        firstName: data[i][2],
-                                        lastName: data[i][3],
+                                        firstName: data[i][4],
+                                        lastName: data[i][5],
+                                        office: data[i][3],
+                                        destination: data[i][8],
                                         dateSubmitted: date,
-                                        status: data[i][5]
+                                        status: data[i][7]
                                     })
                                 }
                             }
@@ -175,13 +164,13 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                         }
                     })
                 }
-                self.getStudentsData("All")
+                self.getStudentsData()
                 self.studentDataProvider = new ArrayDataProvider(self.studentData, {
                     keyAttributes: 'id'
                 });
                 self.viewProfile = (e)=>{
                     // window.location.href = `/?ojr=studentProfile&id=${e.currentTarget.id}`;
-                    window.open(`/?ojr=franchiseStudentProfile&id=${e.currentTarget.id}`, "_blank");
+                    window.open(`/?ojr=studentProfile&id=${e.currentTarget.id}`, "_blank");
                 }
 
                 self.stIdRightClick = ko.observable();
@@ -189,7 +178,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     let menu = event.detail.selectedValue;
                     if(menu=="openNewTab"){
                         if(self.stIdRightClick()!=undefined){
-                            window.open(`/?ojr=franchiseStudentProfile&id=${self.stIdRightClick()}`, "_blank");
+                            window.open(`/?ojr=studentProfile&id=${self.stIdRightClick()}`, "_blank");
                         }
                     }
                 };
@@ -204,10 +193,11 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     let studentPercentage,applicationPercentage,finalchoicePercentage,unassignedPercentage = 0;
                     let studentTotalCount,applicationTotalCount,finalchoiceCount,unassignedCount = 0;
                     $.ajax({
-                        url: BaseURL+"/getFranchiseDashboardCount",
+                        url: BaseURL+"/getManagerDashboardCount",
                         type: 'POST',
                         data: JSON.stringify({
-                            franchiseId: self.franchiseId(),
+                            officeId: self.userOfficeId(),
+                            userId: self.userId()
                         }),
                         error: function (xhr, textStatus, errorThrown) {
                             console.log(textStatus);
@@ -220,7 +210,6 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                             applicationTotalCount = data['application_count'];
                             finalchoiceCount = data['finalchoice_count'];
                             unassignedCount = data['unassigned_count'];
-                            
 
                             studentPercentage =  studentTotalCount ? (self.studentsCount() / studentTotalCount) * 100 : 0;
                             applicationPercentage = applicationTotalCount ? (self.applicationCount() / applicationTotalCount) * 100 : 0;
@@ -247,7 +236,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                             var unassignedContainer = $(".indicator-container.unassignedProgress");
                             let unassignedMeter = unassignedContainer.find(".indicator-window > span");
                             unassignedMeter.css("width", unassignedPercentage + "%");
-                            
+
                             let studentMonthTotal = data['StudentMonthCounts'][0].student_count + data['StudentMonthCounts'][1].student_count + data['StudentMonthCounts'][2].student_count; 
                             studentPieSeries = [
                                 {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, studentMonthTotal], color: "#ffcc00"},
@@ -285,19 +274,11 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                                 {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count], color: "#33cc33"} 
                             ];
                             self.finalchoicePieSeriesValue(finalchoicePieSeries);
-
-                            missedReminderPieSeries = [
-                                {name : data['MissedReminderMonthCounts'][0].month_name, items : [data['MissedReminderMonthCounts'][0].missed_reminder_count], color: "#ffcc00"},
-                                {name : data['MissedReminderMonthCounts'][1].month_name, items : [data['MissedReminderMonthCounts'][1].missed_reminder_count], color: "#3366cc"},
-                                {name : data['MissedReminderMonthCounts'][2].month_name, items : [data['MissedReminderMonthCounts'][2].missed_reminder_count], color: "#33cc33"} 
-                            ];
-                            self.missedReminderPieSeriesValue(missedReminderPieSeries);
             
 
                         }
                     })
                 }
-
 
                 self.connected = function () {
                     if (sessionStorage.getItem("userName") == null) {
@@ -306,22 +287,15 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     else {
                         app.onAppSuccess();
                         var routes = args.parentRouter._routes;
-                        if(routes[2].path!="franchiseDashboard"){
+                        if(routes[2].path!="franchiseCounsellorDashboard"){
                             location.reload();
                         }
-                        self.getDashboardCount()
+                        self.getDashboardCount();
                         self.progressLine();
                     }
                 }
-
-
-                self.selectedData = (e)=>{
-                    let selectVal = e.detail.value;
-                    self.getStudentsData(selectVal)
-                }
-
             }
         }
-        return  franchiseDashboard;
+        return  CounsellorDashboard;
     }
 );

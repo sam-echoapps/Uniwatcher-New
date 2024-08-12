@@ -1413,6 +1413,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                             type: 'POST',
                             data: JSON.stringify({
                                 studentId: self.student(),
+                                userId: sessionStorage.getItem("userId"),
                                 franchiseId: sessionStorage.getItem("userFranchiseId"),
                                 note: self.note(),
                                 reminderDate: self.reminderDate(),

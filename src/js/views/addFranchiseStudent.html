@@ -52,7 +52,7 @@
             <oj-bind-if test="[[userRole() === 'partner' ]]">
                 <oj-button id="save" chroming="outlined" on-oj-action="[[partnerFormSubmit]]">Submit</oj-button>
             </oj-bind-if>
-            <oj-bind-if test="[[userRole() === 'franchise' || userRole() === 'franchise director' ]]">
+            <oj-bind-if test="[[userRole() === 'franchise' || userRole() === 'franchise director'  || userRole() === 'franchise manager' || userRole() === 'franchise counsellor' ]]">
                 <oj-button id="save" chroming="outlined" on-oj-action="[[franchiseFormSubmit]]">Submit</oj-button>
             </oj-bind-if>
             <!-- <oj-bind-if test="[[userRole() != 'partner' ]]">

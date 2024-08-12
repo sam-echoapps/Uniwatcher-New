@@ -48,6 +48,8 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 var applicationPieSeries;
                 self.finalchoicePieSeriesValue = ko.observableArray();
                 var finalchoicePieSeries;
+                self.missedReminderPieSeriesValue = ko.observableArray();
+                var missedReminderPieSeries;
 
                 self.getDashboardCount = ()=>{
                     $.ajax({
@@ -431,6 +433,13 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                                 {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count], color: "#33cc33"} 
                             ];
                             self.finalchoicePieSeriesValue(finalchoicePieSeries);
+
+                            missedReminderPieSeries = [
+                                {name : data['MissedReminderMonthCounts'][0].month_name, items : [data['MissedReminderMonthCounts'][0].missed_reminder_count], color: "#ffcc00"},
+                                {name : data['MissedReminderMonthCounts'][1].month_name, items : [data['MissedReminderMonthCounts'][1].missed_reminder_count], color: "#3366cc"},
+                                {name : data['MissedReminderMonthCounts'][2].month_name, items : [data['MissedReminderMonthCounts'][2].missed_reminder_count], color: "#33cc33"} 
+                            ];
+                            self.missedReminderPieSeriesValue(missedReminderPieSeries);
             
 
                         }

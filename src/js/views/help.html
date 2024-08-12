@@ -144,7 +144,7 @@
 </oj-bind-if>
 
 
-<oj-bind-if test="[[role() === 'admin' || role()=== 'director' || role()=== 'partner' ]]">
+<oj-bind-if test="[[role()=== 'partner' ]]">
     <div class="oj-panel oj-flex oj-sm-align-items-center oj-sm-justify-content-center oj-sm-flex-direction-column">
         <oj-bind-if test="[[role() != 'partner']]">
             <h5>Partner View</h5>

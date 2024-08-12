@@ -95,6 +95,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "franchiseReport", detail: { label: "Franchise Report", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
         { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
+        { path: "franchiseCounsellorDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
       ];
     } else if (sessionStorage.getItem("userRole") == "manager") {
       var navData = [
@@ -155,6 +156,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "franchiseReport", detail: { label: "Franchise Report", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
+        { path: "franchiseCounsellorDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
       ];
     } else if (sessionStorage.getItem("userRole") == "partner") {
       var navData = [
@@ -185,8 +187,9 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "franchiseFinalchoiced", detail: { label: "Finalchoiced", iconClass: "oj-ux-ico-bar-chart", }, },
         { path: "franchiseReport", detail: { label: "Franchise Report", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
+        { path: "franchiseCounsellorDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
       ];
-    }else if (sessionStorage.getItem("userRole") == "franchise" || sessionStorage.getItem("userRole") == "franchise director" || sessionStorage.getItem("userRole") == "franchise manager" || sessionStorage.getItem("userRole") == "franchise counsellor") {
+    }else if (sessionStorage.getItem("userRole") == "franchise" || sessionStorage.getItem("userRole") == "franchise director" || sessionStorage.getItem("userRole") == "franchise manager") {
       var navData = [
         { path: "", redirect: "signin" },
         { path: "signin", detail: { label: "Signin", iconClass: "oj-ux-ico-bar-chart" }, },
@@ -219,8 +222,43 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "franchiseFinalChoiceReport", detail: { label: "Final Choice Report", iconClass: "fa-solid fa-people-roof", }, },
         { path: "franchiseMissedReminder", detail: { label: "Missed Reminder Report", iconClass: "fa-solid fa-people-roof", }, },
         { path: "franchiseSubUsers", detail: { label: "Manage Staff", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseCounsellorDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
       ];
-    }  
+    } else if (sessionStorage.getItem("userRole") == "franchise counsellor") {
+      var navData = [
+        { path: "", redirect: "signin" },
+        { path: "signin", detail: { label: "Signin", iconClass: "oj-ux-ico-bar-chart" }, },
+        { path: "franchiseCounsellorDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "managerDashboard", detail: { label: "Manager Dashboard", iconClass: "fa-solid fa-gauge", }, },
+        { path: "counsellorDashboard", detail: { label: "Counsellor Dashboard", iconClass: "fa-solid fa-gauge", }, },
+        { path: "dashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "addFranchiseStudent", detail: { label: "Add Student", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "searchFranchiseStudent", detail: { label: "Search Student", iconClass: "fa-solid fa-magnifying-glass", },},
+        { path: "franchiseStudentProfile", detail: { label: "Student Profile", iconClass: "oj-ux-ico-bar-chart", }, },
+        { path: "franchiseStudents", detail: { label: "Students", iconClass: "oj-ux-ico-bar-chart", }, },
+        { path: "franchiseStudentManagerReport", detail: { label: "Student Manager Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseApplication", detail: { label: "Application", iconClass: "oj-ux-ico-bar-chart", }, },
+        { path: "franchiseFinalchoiced", detail: { label: "Finalchoiced", iconClass: "oj-ux-ico-bar-chart", }, },
+        { path: "franchiseReport", detail: { label: "Franchise Report", iconClass: "fa-solid fa-magnifying-glass", },},
+        // { path: "studentProfile", detail: { label: "Student Profile", iconClass: "oj-ux-ico-bar-chart", }, },
+        // { path: "partnerStudentManagerReport", detail: { label: "Student Manager Report", iconClass: "fa-solid fa-people-roof", }, },
+        // { path: "partnerStudentProfile", detail: { label: "Student Profile", iconClass: "oj-ux-ico-bar-chart", }, },
+        // { path: "partnerStudents", detail: { label: "Students", iconClass: "oj-ux-ico-bar-chart", }, },
+        // { path: "partnerApplication", detail: { label: "Application", iconClass: "oj-ux-ico-bar-chart", }, },
+        // { path: "partnerFinalchoiced", detail: { label: "Finalchoiced", iconClass: "oj-ux-ico-bar-chart", }, },
+        // { path: "guideManageInstitution", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
+        // { path: "guideManagePartner", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
+        // { path: "guideManagePartnerView", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
+        { path: "help", detail: { label: "Help", iconClass: "fa-solid fa-magnifying-glass", },},
+        { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
+        { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
+        { path: "franchiseStudentLogReport", detail: { label: "Student Log Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseApplicationReport", detail: { label: "Application Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseFinalChoiceReport", detail: { label: "Final Choice Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseMissedReminder", detail: { label: "Missed Reminder Report", iconClass: "fa-solid fa-people-roof", }, },
+        { path: "franchiseSubUsers", detail: { label: "Manage Staff", iconClass: "fa-solid fa-people-roof", }, },
+      ];
+    } 
     else if (sessionStorage.getItem("userRole") == "student") {
       var navData = [
         { path: "", redirect: "signin" },
@@ -229,6 +267,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "managerDashboard", detail: { label: "Manager Dashboard", iconClass: "fa-solid fa-gauge", }, },
         { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
         { path: "partnerDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
+        { path: "franchiseCounsellorDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
       ];
     }    
     else {
@@ -279,6 +318,7 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         { path: "franchiseReport", detail: { label: "Franchise Report", iconClass: "fa-solid fa-magnifying-glass", },},
         { path: 'privacyPolicy', detail : {label :'Privacy policy',iconClass: "fa-solid fa-magnifying-glass"} },
         { path: "myProfile", detail: { label: "My Profile", iconClass: "fa-solid fa-gauge" }, },
+        { path: "franchiseCounsellorDashboard", detail: { label: "Dashboard", iconClass: "fa-solid fa-gauge" }, },
       ];
     }
     
@@ -409,9 +449,30 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
       ]
     }  
-    else if (sessionStorage.getItem("userRole") == "franchise manager" || sessionStorage.getItem("userRole") == "franchise counsellor") {
+    else if (sessionStorage.getItem("userRole") == "franchise manager") {
       self.navMenu = [
         {"name": "Dashboard","id": "home","icons": "fa-solid fa-gauge", "path":"franchiseDashboard"},
+        {"name": "Student", "id": "student", "icons": "oj-ux-ico-education", 
+          "children": [
+            {"name": "Add Student","id": "addFranchiseStudent","icons": "fa-solid fa-user-plus", "path":"addFranchiseStudent"},
+            {"name": "Search Student","id": "searchFranchiseStudent","icons": "fa-solid  fa-magnifying-glass", "path":"searchFranchiseStudent"},
+            {"name": "Student Manager Report","id": "franchiseStudentManagerReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentManagerReport"},
+            {"name": "Student Log Report","id": "franchiseStudentLogReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseStudentLogReport"},
+          ]
+        },
+        {"name": "Reports", "id": "application", "icons": "oj-ux-ico-bar-chart", 
+          "children": [
+            {"name": "Application Report","id": "franchiseApplicationReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseApplicationReport"},
+            {"name": "Final Choice Report","id": "franchiseFinalChoiceReport","icons": "oj-ux-ico-bar-chart", "path":"franchiseFinalChoiceReport"},
+            {"name": "Missed Reminder Report","id": "franchiseMissedReminders","icons": "oj-ux-ico-bar-chart", "path":"franchiseMissedReminder"},
+          ]
+        },
+        {"name": "Help","id": "help","icons": "fa-solid fa-life-ring", "path":"help"},
+      ]
+    }  
+    else if (sessionStorage.getItem("userRole") == "franchise counsellor") {
+      self.navMenu = [
+        {"name": "Dashboard","id": "home","icons": "fa-solid fa-gauge", "path":"franchiseCounsellorDashboard"},
         {"name": "Student", "id": "student", "icons": "oj-ux-ico-education", 
           "children": [
             {"name": "Add Student","id": "addFranchiseStudent","icons": "fa-solid fa-user-plus", "path":"addFranchiseStudent"},
@@ -654,8 +715,10 @@ define(["knockout","ojs/ojcontext", "ojs/ojmodule-element-utils", "ojs/ojknockou
         router.go({ path: "managerDashboard" });
       }else if (sessionStorage.getItem("userRole") == "partner") {
         router.go({ path: "partnerDashboard" });
-      }else if (sessionStorage.getItem("userRole") == "franchise" || sessionStorage.getItem("userRole") == "franchise director" || sessionStorage.getItem("userRole") == "franchise manager" || sessionStorage.getItem("userRole") == "franchise counsellor") {
+      }else if (sessionStorage.getItem("userRole") == "franchise" || sessionStorage.getItem("userRole") == "franchise director" || sessionStorage.getItem("userRole") == "franchise manager") {
         router.go({ path: "franchiseDashboard" });
+      }else if (sessionStorage.getItem("userRole") == "franchise counsellor") {
+        router.go({ path: "franchiseCounsellorDashboard" });
       }else if (sessionStorage.getItem("userRole") == "student") {
         router.go({ path: "myProfile" });
       } else {
