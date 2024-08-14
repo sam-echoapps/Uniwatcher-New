@@ -36,8 +36,11 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     else if(cardId==2){
                         self.router.go({path : 'franchiseApplication'});
                     }
-                    else{
+                    else if(cardId==3){
                         self.router.go({path : 'franchiseFinalchoiced'});
+                    }
+                    else{
+                        self.router.go({path : 'franchiseUnAssigned'});
                     }
                 };
 

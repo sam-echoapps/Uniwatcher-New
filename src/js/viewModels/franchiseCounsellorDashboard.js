@@ -31,13 +31,16 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     let cardId = event.currentTarget.id;
                     
                     if(cardId==1){
-                        self.router.go({path : 'franchiseStudents'});
+                        self.router.go({path : 'franchiseCounsellorStudents'});
                     }
                     else if(cardId==2){
-                        self.router.go({path : 'franchiseApplication'});
+                        self.router.go({path : 'franchiseCounsellorApplication'});
+                    }
+                    else if(cardId==3){
+                        self.router.go({path : 'franchiseCounsellorFinalchoiced'});
                     }
                     else{
-                        self.router.go({path : 'franchiseFinalchoiced'});
+                        self.router.go({path : 'franchiseUnAssigned'});
                     }
                 };
                 
@@ -170,7 +173,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                 });
                 self.viewProfile = (e)=>{
                     // window.location.href = `/?ojr=studentProfile&id=${e.currentTarget.id}`;
-                    window.open(`/?ojr=studentProfile&id=${e.currentTarget.id}`, "_blank");
+                    window.open(`/?ojr=franchiseStudentProfile&id=${e.currentTarget.id}`, "_blank");
                 }
 
                 self.stIdRightClick = ko.observable();
@@ -178,7 +181,7 @@ define(['ojs/ojcore',"knockout","jquery","appController", "ojs/ojarraydataprovid
                     let menu = event.detail.selectedValue;
                     if(menu=="openNewTab"){
                         if(self.stIdRightClick()!=undefined){
-                            window.open(`/?ojr=studentProfile&id=${self.stIdRightClick()}`, "_blank");
+                            window.open(`/?ojr=franchiseStudentProfile&id=${self.stIdRightClick()}`, "_blank");
                         }
                     }
                 };
