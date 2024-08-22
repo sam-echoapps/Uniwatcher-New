@@ -1,3 +1,4 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/counsellorDashboard.css">
 <link rel="stylesheet" href="../../css/dashboardUI.css">
 
@@ -32,7 +33,7 @@
                 <b>Students</b><br><oj-bind-text value="[[studentsCount]]"></oj-bind-text>
                 <div class="link-container">
                    <a class="link" id="1" on-click="[[cardAction]]">
-                       View All
+                       View All &nbsp;
                      <i class="fas fa-arrow-right arrow-icon"></i>
                    </a>
                </div>
@@ -48,7 +49,7 @@
            <b>Applications</b><br><oj-bind-text value="[[applicationCount]]"></oj-bind-text>
            <div class="link-container">
                <a class="link" id="2" on-click="[[cardAction]]">
-                   View All
+                   View All &nbsp;
                  <i class="fas fa-arrow-right arrow-icon"></i>
                </a>
            </div>
@@ -65,7 +66,7 @@
                <b>Final choice</b><br><oj-bind-text value="[[finalchoicedCount]]"></oj-bind-text>
                <div class="link-container">
                    <a class="link" id="3" on-click="[[cardAction]]">
-                       View All
+                       View All &nbsp;
                      <i class="fas fa-arrow-right arrow-icon"></i>
                    </a>
                </div>
@@ -81,7 +82,7 @@
                <b>Unassigned Leads</b><br><oj-bind-text value="[[unassignedLeadsCount]]"></oj-bind-text>
                <div class="link-container">
                    <a class="link" id="4" on-click="[[cardAction]]">
-                       View All
+                       View All &nbsp;
                      <i class="fas fa-arrow-right arrow-icon"></i>
                    </a>
                </div>
@@ -103,7 +104,7 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
-                <b>Students</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 Months data)</span><br>
+                <b>Students</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 months data)</span><br>
                 <oj-chart
                     class="chart"
                     id="studentChart"
@@ -115,6 +116,7 @@
                     animation-on-data-change="auto"
                     style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
                     hover-behavior="dim"
+                    style="height: 400px;"
                     >
                     </oj-chart>
             </div>
@@ -123,11 +125,11 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
-                <b>Applications</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 Months data)</span><br>
+                <b>Applications</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 months data)</span><br>
                 <oj-chart
                     class="chart"
                     id="applicationChart"
-                    type="pie"
+                    type="bar"
                     orientation="[[orientationValue]]"
                     stack="[[stackValue]]"
                     series="[[applicationPieSeriesValue]]"
@@ -135,6 +137,7 @@
                     animation-on-data-change="auto"
                     style-defaults.data-label-style='{"fontWeight": "bold", "fontSize": "13px","color":"#ffffff"}'
                     hover-behavior="dim"
+                    style="height: 400px;"
                     >
                     </oj-chart>
             </div>
@@ -164,7 +167,7 @@
     <div class="tile-pie">
         <div class="post-pie">
             <div class="chart-container chart-size">
-                <b>Missed Reminder</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 Months data)</span><br>
+                <b>Missed Reminder</b><span style="font-weight: 600; font-size: 12px;"> (Last 3 months data)</span><br>
                 <oj-chart
                     class="chart"
                     id="missedReminderChart"
@@ -190,7 +193,7 @@
     <div class="oj-flex tbl-top-btn">
         <p class="oj-flex oj-sm-align-items-center" id="assignedLeadCount" 
             style="padding: 4px 10px; border-radius: 10px;background-color: #6a73fa; color: #fff;margin-top: 15px;">
-            Total Assigned leads: <oj-bind-text value="[[assignedLeadsCount]]"></oj-bind-text>
+            <i class="bi bi-info-circle-fill info-fill-icon"></i> &nbsp;&nbsp;Total Assigned leads: <oj-bind-text value="[[assignedLeadsCount]]"></oj-bind-text>
         </p>
     </div>
 

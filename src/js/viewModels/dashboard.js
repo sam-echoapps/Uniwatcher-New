@@ -663,9 +663,9 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
 
                             let studentMonthTotal = data['StudentMonthCounts'][0].student_count + data['StudentMonthCounts'][1].student_count + data['StudentMonthCounts'][2].student_count; 
                             studentPieSeries = [
-                                {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, studentMonthTotal], color: "#ffcc00"},
-                                {name : data['StudentMonthCounts'][1].month_name, items : [data['StudentMonthCounts'][1].student_count, studentMonthTotal], color: "#3366cc"},
-                                {name : data['StudentMonthCounts'][2].month_name, items : [data['StudentMonthCounts'][2].student_count, studentMonthTotal], color: "#33cc33"} 
+                                {name : data['StudentMonthCounts'][0].month_name, items : [data['StudentMonthCounts'][0].student_count, studentMonthTotal], color: "#848bfb"},
+                                {name : data['StudentMonthCounts'][1].month_name, items : [data['StudentMonthCounts'][1].student_count, studentMonthTotal], color: "#212ef8"},
+                                {name : data['StudentMonthCounts'][2].month_name, items : [data['StudentMonthCounts'][2].student_count, studentMonthTotal], color: "#040c7b"} 
                             ];
                             self.studentPieSeriesValue(studentPieSeries);
 
@@ -681,17 +681,17 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                                 {
                                   name: data['ApplicationMonthCounts'][0].month_name,
                                   items: [data['ApplicationMonthCounts'][0].application_count],
-                                  color: "#ffcc00"
+                                  color: "#848bfb"
                                 },
                                 {
                                   name: data['ApplicationMonthCounts'][1].month_name,
                                   items: [data['ApplicationMonthCounts'][1].application_count],
-                                  color: "#3366cc"
+                                  color: "#212ef8"
                                 },
                                 {
                                   name: data['ApplicationMonthCounts'][2].month_name,
                                   items: [data['ApplicationMonthCounts'][2].application_count],
-                                  color: "#33cc33"
+                                  color: "#040c7b"
                                 }
                               ];
                               
@@ -703,16 +703,16 @@ define(["knockout","jquery","appController", "ojs/ojarraydataprovider",
                                 {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count, finalchoiceMonthTotal], color: "#33cc33"} 
                             ]; */
                             finalchoicePieSeries = [
-                                {name : data['FinalChoiceMonthCounts'][0].month_name, items : [data['FinalChoiceMonthCounts'][0].final_choice_count], color: "#ffcc00"},
-                                {name : data['FinalChoiceMonthCounts'][1].month_name, items : [data['FinalChoiceMonthCounts'][1].final_choice_count], color: "#3366cc"},
-                                {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count], color: "#33cc33"} 
+                                {name : data['FinalChoiceMonthCounts'][0].month_name, items : [data['FinalChoiceMonthCounts'][0].final_choice_count], color: "#848bfb"},
+                                {name : data['FinalChoiceMonthCounts'][1].month_name, items : [data['FinalChoiceMonthCounts'][1].final_choice_count], color: "#212ef8"},
+                                {name : data['FinalChoiceMonthCounts'][2].month_name, items : [data['FinalChoiceMonthCounts'][2].final_choice_count], color: "#040c7b"} 
                             ];
                             self.finalchoicePieSeriesValue(finalchoicePieSeries);
 
                             missedReminderPieSeries = [
-                                {name : data['MissedReminderMonthCounts'][0].month_name, items : [data['MissedReminderMonthCounts'][0].missed_reminder_count], color: "#ffcc00"},
-                                {name : data['MissedReminderMonthCounts'][1].month_name, items : [data['MissedReminderMonthCounts'][1].missed_reminder_count], color: "#3366cc"},
-                                {name : data['MissedReminderMonthCounts'][2].month_name, items : [data['MissedReminderMonthCounts'][2].missed_reminder_count], color: "#33cc33"} 
+                                {name : data['MissedReminderMonthCounts'][0].month_name, items : [data['MissedReminderMonthCounts'][0].missed_reminder_count], color: "#848bfb"},
+                                {name : data['MissedReminderMonthCounts'][1].month_name, items : [data['MissedReminderMonthCounts'][1].missed_reminder_count], color: "#212ef8"},
+                                {name : data['MissedReminderMonthCounts'][2].month_name, items : [data['MissedReminderMonthCounts'][2].missed_reminder_count], color: "#040c7b"} 
                             ];
                             self.missedReminderPieSeriesValue(missedReminderPieSeries);
             

@@ -64,7 +64,7 @@ html[dir="rtl"] .demo-oracle-icon {
 
 oj-button{
 /*   background-color: #06668a;*/  
-  background-color: #6a73fa;
+  background-color: #040c7b;
   border-radius: 10px;
   border: none !important;
 }
@@ -188,4 +188,9 @@ td{
 
 .oj-tabbar .oj-tabbar-item.oj-selected {
   background-color: #6a73fa;
+}
+
+.info-fill-icon{
+  color: #0d114f;
+  font-size: 20px;
 }

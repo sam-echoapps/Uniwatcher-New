@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 <div class="oj-panel oj-flex oj-sm-justify-content-space-between">
     <h6 style="font-weight: 500;font-size: 22px;color: #6a73fa;">
         Staff Application Submission Report
@@ -60,14 +62,14 @@
 <div id="static-div">
     <div class="oj-flex oj-sm-justify-content-space-around" style="margin-bottom: 20px;padding: 10px 10px 0px 10px; font-weight: 500;">
         <p class="oj-flex oj-sm-align-items-center oj-sm-justify-content-center" style="padding: 4px; border-radius: 10px;background-color: #6a73fa; color: #fff; width: 250px;">
-            Total Applications: <oj-bind-text value="[[applicationCount]]"></oj-bind-text>
+            <i class="bi bi-info-circle-fill info-fill-icon"></i> &nbsp;&nbsp;Total Applications: <oj-bind-text value="[[applicationCount]]"></oj-bind-text>
         </p>
         <p class="oj-flex oj-sm-align-items-center oj-sm-justify-content-center" style="padding: 4px; border-radius: 10px;background-color: #6a73fa; color: #fff; width: 250px;">
-            Total Applicants: <oj-bind-text value="[[applicantCount]]"></oj-bind-text>
+            <i class="bi bi-info-circle-fill info-fill-icon"></i> &nbsp;&nbsp;Total Applicants: <oj-bind-text value="[[applicantCount]]"></oj-bind-text>
         </p>
         <p class="oj-flex oj-sm-align-items-center oj-sm-justify-content-center" style="padding: 4px; border-radius: 10px;background-color: #6a73fa; color: #fff; width: 250px;">
             <a on-click= "[[staffCountPopUp]]" target="_blank" style="color: #fff;">
-                Staff Count: <oj-bind-text value="[[applicationCount]]"></oj-bind-text>
+                <i class="bi bi-info-circle-fill info-fill-icon"></i> &nbsp;&nbsp;Staff Count: <oj-bind-text value="[[applicationCount]]"></oj-bind-text>
             </a>
         </p>
     </div>
