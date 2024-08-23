@@ -49,7 +49,7 @@
                                       
                     <oj-toolbar>
                       <a on-click= "[[notifyToggle]]" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-                        <i class="fa-solid fa-bell"></i>
+                        <i class="fa-solid fa-bell bell-reminder"></i>
                         <oj-bind-if test="[[reminderCount() != 0 ]]">
                           <span class="oj-badge oj-badge-sm oj-badge-danger" style="border-radius: 50%; margin-top: -30px;margin-left: 20px;">
                             <oj-bind-text value="[[reminderCount]]"></oj-bind-text>

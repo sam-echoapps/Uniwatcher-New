@@ -191,6 +191,9 @@ td{
 }
 
 .info-fill-icon{
-  color: #0d114f;
+  color: #ffffff;
   font-size: 20px;
+}
+.bell-reminder{
+  color: #040c7b;
 }
